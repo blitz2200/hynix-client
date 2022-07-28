@@ -1,1 +1,13 @@
-<canvas #myChart width="400" height="400"></canvas>
+<div class=" w-2/3">
+  <canvas  baseChart
+           [data]="barChartData"
+           [labels]="['Q1', 'Q2', 'Q3']"
+           [options]="barChartOptions"
+           [plugins]="barChartPlugins"
+           [type]="barChartType"
+           (chartHover)="chartHovered($event)"
+           (chartClick)="chartClicked($event)">
+
+  </canvas>
+
+</div>
