@@ -5,11 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExampleChartComponent } from './example-chart/example-chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { MemoryComponent } from './memory/memory.component';
+import { ProcessingComponent } from './processing/processing.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleChartComponent
+    ExampleChartComponent,
+    MemoryComponent,
+    ProcessingComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

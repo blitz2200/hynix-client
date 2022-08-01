@@ -76,14 +76,14 @@ export class ExampleChartComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    var barChartData = this.barChartData
+    const barChartData = this.barChartData;
     // @ts-ignore
-    var chart = this.chart?.chart;
-    var index = 3;
-    setInterval(function () {
-      // updatedDataSet = [Math.random(), Math.random(), Math.random(), Math.random()];
-      // updateBarGraph(barChart, 'Prediction', colouarray, updatedDataSet);
+    const chart = this.chart?.chart;
+    let index = 3;
+    let interval = setInterval(function () {
       console.log('barChartData.datasets', barChartData.datasets);
+      if(index > 9)
+        clearInterval(interval);
       barChartData.datasets.push({
         label: 'Q' + index,
         data: [15, 20,],
