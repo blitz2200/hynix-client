@@ -9,6 +9,8 @@ import { MemoryComponent } from './memory/memory.component';
 import { ProcessingComponent } from './processing/processing.component';
 import { ResultComponent } from './result/result.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     BrowserModule,
     AppRoutingModule,
     NgChartsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

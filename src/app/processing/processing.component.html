@@ -1,14 +1,9 @@
-<div class="w-full h-full">
-<!--  <img *ngFor="let image of randomImages" src='{{image.fileName}}' alt="">-->
-<!--  <mat-grid-list cols="3" rowHeight="2:1">-->
-<!--    <mat-grid-tile *ngFor="let image of randomImages">-->
-<!--      <img src='{{image.fileName}}' alt="">-->
-<!--    </mat-grid-tile>-->
-<!--  </mat-grid-list>-->
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
+<div class="">
+  <button mat-raised-button (click)="onShuffleImageClick()"
+          color="primary">Shuffle Image</button>
+  <mat-grid-list cols="3" rowHeight="1:1">
+    <mat-grid-tile *ngFor="let image of randomImages">
+      <img src='{{image.fileName}}' alt="">
+    </mat-grid-tile>
   </mat-grid-list>
 </div>

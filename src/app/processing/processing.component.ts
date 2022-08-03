@@ -20,12 +20,16 @@ const images: ImageModel[] = [
 })
 export class ProcessingComponent implements OnInit {
 
-  randomImages?: ImageModel[];
+  randomImages?: ImageModel[] = images;
+
+  onShuffleImageClick(event?: MouseEvent) {
+    // const evtMsg = event ? ' Event target class is ' + (event.target as HTMLElement).className  : '';
+    this.randomImages = images.sort(() => Math.random() - 0.5);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
-    this.randomImages = images.sort(() => Math.random() - 0.5);
   }
 
 }
