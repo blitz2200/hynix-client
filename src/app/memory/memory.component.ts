@@ -11,5 +11,4 @@ export class MemoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
