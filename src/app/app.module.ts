@@ -8,6 +8,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { MemoryComponent } from './memory/memory.component';
 import { ProcessingComponent } from './processing/processing.component';
 import { ResultComponent } from './result/result.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResultComponent } from './result/result.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgChartsModule
+    NgChartsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
