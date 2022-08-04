@@ -5,11 +5,11 @@ import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
-  selector: 'app-example-chart',
-  templateUrl: './example-chart.component.html',
-  styleUrls: ['./example-chart.component.scss']
+  selector: 'app-chart',
+  templateUrl: './chart.component.html',
+  styleUrls: ['./chart.component.scss']
 })
-export class ExampleChartComponent implements OnInit, AfterViewInit {
+export class ChartComponent implements OnInit, AfterViewInit {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageModel } from '../model/image.model';
+import { DataService } from '../service/data.service';
+import { QueryService } from '../service/query.service';
+import { forkJoin } from 'rxjs';
 
 const images: ImageModel[] = [
   new ImageModel(0, 'assets/images/n00007846_149204_person.jpg'),
@@ -27,9 +30,49 @@ export class ProcessingComponent implements OnInit {
     this.randomImages = images.sort(() => Math.random() - 0.5);
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private dataService: DataService,
+              private queryService: QueryService,) {
   }
 
+  ngOnInit(): void {
+    this.dataService.getAIsStart().subscribe(async isAStart => {
+      await this.findNearestImage('a');
+      this.dataService.aFinish();
+    });
+
+    this.dataService.getBIsStart().subscribe(async isAStart => {
+      await this.findNearestImage('b');
+      this.dataService.bFinish();
+    });
+
+  }
+
+  async findNearestImage(memoryType: string) {
+    console.log('memoryType:', memoryType);
+
+    for (let i = 0; i< this.randomImages!.length; i++) {
+      console.log('i ', i);
+      let elementById:any = document.getElementById(`image-${i}`);
+      let spinner:any = elementById!.childNodes[2];
+      let layer:any = elementById!.childNodes[1];
+      let complete:any = elementById!.childNodes[3];
+      // elementById!.classList.addClass('layer');
+
+      layer.classList.remove('!hidden');
+      layer.style.display="block";
+      spinner.classList.remove('!hidden');
+      spinner.style.display="block";
+      let imageModels = await this.queryService.query(memoryType, this.randomImages![i].index);
+      spinner.style.display="none";
+      complete.classList.remove('!hidden');
+      complete.style.display="block";
+      console.log('nearest image model', imageModels);
+
+
+      //
+      //   .subscribe((imageModel) => {
+      //   console.log('nearest image model', imageModel);
+      // })
+    }
+  }
 }

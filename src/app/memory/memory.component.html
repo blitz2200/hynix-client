@@ -1,1 +1,17 @@
-<p>memory works!</p>
+<div class="p-2">
+  <div [ngClass]="isALoading ? 'memoryBorder' : 'memoryNoneBorder' "
+       class="p-3 mb-10">
+    <div>Case A</div>
+    <img src="https://picsum.photos/300/300" alt="">
+  </div>
+
+  <div [ngClass]="isBLoading ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-10">
+    <div>Case B</div>
+    <img src="https://picsum.photos/400/400" alt="">
+  </div>
+
+  <button mat-raised-button color="primary" (click)="onStart()" [disabled]="isSubmitting">
+    <mat-spinner diameter="25" class="m-3" *ngIf="isSubmitting"></mat-spinner>
+    <span *ngIf="!isSubmitting">START</span>
+  </button>
+</div>

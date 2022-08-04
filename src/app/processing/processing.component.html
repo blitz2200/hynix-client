@@ -1,9 +1,24 @@
 <div class="">
   <button mat-raised-button (click)="onShuffleImageClick()"
-          color="primary">Shuffle Image</button>
+          color="primary">Shuffle Image
+  </button>
   <mat-grid-list cols="3" rowHeight="1:1">
     <mat-grid-tile *ngFor="let image of randomImages">
-      <img src='{{image.fileName}}' alt="">
+      <div [id]="'image-' + image.index" class="relative w-full h-full">
+
+        <img src='{{image.fileName}}' alt="" class="absolute z-0">
+        <div class="absolute layer z-40 !hidden"></div>
+        <mat-spinner class="absolute top-1/2
+         left-1/2 transform -translate-x-1/2
+         -translate-y-1/2 !hidden z-60">
+        </mat-spinner>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                  class="!absolute top-1/2
+         left-1/2 transform -translate-x-1/2
+         -translate-y-1/2 !hidden z-60 col-white w-20 h-20"
+                  fontIcon="check"></mat-icon>
+
+      </div>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
