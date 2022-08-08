@@ -20,8 +20,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
-    // responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
+    indexAxis: 'y',
     scales: {
       gridLines: {
         display: false,
@@ -34,10 +33,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
       }
     },
     plugins: {
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart - Stacked'
-      },
+      // title: {
+      //   display: true,
+      //   text: 'Chart.js Bar Chart - Stacked'
+      // },
       legend: {
         display: false,
       },

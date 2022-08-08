@@ -1,12 +1,22 @@
-<div class="">
-  <button mat-raised-button (click)="onShuffleImageClick()"
-          color="primary">Shuffle Image
-  </button>
-  <mat-grid-list cols="3" rowHeight="1:1">
+<mat-card class="m-3 max-w-xl">
+  <div>
+    <button mat-raised-button (click)="onShuffleImageClick()"
+            color="primary" class="!mb-3">Shuffle Image
+    </button>
+    k=
+    <mat-form-field>
+      <input matInput type="number">
+    </mat-form-field>
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>City</mat-label>-->
+<!--      <input matInput placeholder="Ex. San Francisco">-->
+<!--    </mat-form-field>-->
+  </div>
+  <mat-grid-list cols="3" rowHeight="1:1" class="max-w-lg">
     <mat-grid-tile *ngFor="let image of randomImages">
       <div [id]="'image-' + image.index" class="relative w-full h-full">
 
-        <img src='{{image.fileName}}' alt="" class="absolute z-0">
+        <img src='{{image.fileName}}' alt="" class="absolute z-0 object-cover">
         <div class="absolute layer z-40 !hidden"></div>
         <mat-spinner class="absolute top-1/2
          left-1/2 transform -translate-x-1/2
@@ -21,4 +31,4 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-</div>
+</mat-card>

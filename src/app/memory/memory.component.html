@@ -1,17 +1,27 @@
-<div class="p-2">
-  <div [ngClass]="isALoading ? 'memoryBorder' : 'memoryNoneBorder' "
+<mat-card class="m-2">
+  <div [ngClass]="isLoading == 'a' ? 'memoryBorder' : 'memoryNoneBorder' "
        class="p-3 mb-10">
     <div>Case A</div>
-    <img src="https://picsum.photos/300/300" alt="">
+    <img src="https://picsum.photos/300/300" alt="" width="150" height="150">
   </div>
 
-  <div [ngClass]="isBLoading ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-10">
+  <div [ngClass]="isLoading == 'b' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-10">
     <div>Case B</div>
-    <img src="https://picsum.photos/400/400" alt="">
+    <img src="https://picsum.photos/400/400" alt="" width="150" height="150">
+  </div>
+
+  <div [ngClass]="isLoading == 'c' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-10">
+    <div>Case C</div>
+    <img src="https://picsum.photos/350/350" alt="" width="150" height="150">
+  </div>
+
+  <div [ngClass]="isLoading == 'd' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-10">
+    <div>Case D</div>
+    <img src="https://picsum.photos/250/250" alt="" width="150" height="150">
   </div>
 
   <button mat-raised-button color="primary" (click)="onStart()" [disabled]="isSubmitting">
     <mat-spinner diameter="25" class="m-3" *ngIf="isSubmitting"></mat-spinner>
     <span *ngIf="!isSubmitting">START</span>
   </button>
-</div>
+</mat-card>

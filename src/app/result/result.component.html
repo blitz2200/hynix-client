@@ -1,1 +1,10 @@
-<p>result works!</p>
+<mat-card class="m-3">
+  <mat-card-title>Top-k Results</mat-card-title>
+    <div  class="flex gap-3">
+      <img *ngFor="let image of nearestImage"
+           src="assets/images/{{image.fileName}}"
+           alt="" class="w-20 h-20 object-cover fade-in">
+    </div>
+
+
+</mat-card>

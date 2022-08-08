@@ -26,7 +26,6 @@ export class ProcessingComponent implements OnInit {
   randomImages?: ImageModel[] = images;
 
   onShuffleImageClick(event?: MouseEvent) {
-    // const evtMsg = event ? ' Event target class is ' + (event.target as HTMLElement).className  : '';
     this.randomImages = images.sort(() => Math.random() - 0.5);
   }
 
@@ -35,44 +34,43 @@ export class ProcessingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getAIsStart().subscribe(async isAStart => {
-      await this.findNearestImage('a');
-      this.dataService.aFinish();
-    });
 
-    this.dataService.getBIsStart().subscribe(async isAStart => {
-      await this.findNearestImage('b');
-      this.dataService.bFinish();
+    this.dataService.getStartProcessing().subscribe(async processor => {
+      await this.findNearestImage(processor!);
+      if(processor != 'd') {
+        this.resetDisplay();
+      }
+      this.dataService.setFinish(processor!);
     });
-
   }
 
   async findNearestImage(memoryType: string) {
-    console.log('memoryType:', memoryType);
-
     for (let i = 0; i< this.randomImages!.length; i++) {
-      console.log('i ', i);
       let elementById:any = document.getElementById(`image-${i}`);
       let spinner:any = elementById!.childNodes[2];
       let layer:any = elementById!.childNodes[1];
       let complete:any = elementById!.childNodes[3];
-      // elementById!.classList.addClass('layer');
-
       layer.classList.remove('!hidden');
       layer.style.display="block";
       spinner.classList.remove('!hidden');
       spinner.style.display="block";
       let imageModels = await this.queryService.query(memoryType, this.randomImages![i].index);
+      console.log('imageModels', imageModels);
+      this.dataService.setNearestImage(imageModels.nearestImages!);
       spinner.style.display="none";
       complete.classList.remove('!hidden');
       complete.style.display="block";
-      console.log('nearest image model', imageModels);
+    }
+  }
 
+  private resetDisplay() {
 
-      //
-      //   .subscribe((imageModel) => {
-      //   console.log('nearest image model', imageModel);
-      // })
+    for (let i = 0; i< this.randomImages!.length; i++) {
+      let elementById:any = document.getElementById(`image-${i}`);
+      let layer:any = elementById!.childNodes[1];
+      let complete:any = elementById!.childNodes[3];
+      layer.style.display="none";
+      complete.style.display="none";
     }
   }
 }
