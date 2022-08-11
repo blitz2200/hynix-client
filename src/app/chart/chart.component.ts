@@ -27,9 +27,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
       },
       x: {
         stacked: true,
+        grid: {
+          display: false
+        }
       },
       y: {
-        stacked: true
+        stacked: true,
+        grid: {
+          display: false
+        }
       }
     },
     plugins: {
@@ -42,7 +48,8 @@ export class ChartComponent implements OnInit, AfterViewInit {
       },
       datalabels: {
         formatter: function (value, context) {
-          return context.dataset.label + '  (' + value + ')';
+          // return context.dataset.label + '  (' + value + ')';
+          return context.dataset.label;
         },
       }
     }
@@ -85,7 +92,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         clearInterval(interval);
       barChartData.datasets.push({
         label: 'Q' + index,
-        data: [15, 20,],
+        data: [15, 20],
       });
       // @ts-ignore
       chart.update();

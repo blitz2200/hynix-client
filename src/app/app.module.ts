@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChartComponent,
     MemoryComponent,
     ProcessingComponent,
-    ResultComponent
+    ResultComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
