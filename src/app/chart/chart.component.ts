@@ -3,20 +3,29 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-export class ChartComponent implements OnInit, AfterViewInit {
+export class ChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
+    this.dataService.getResult().subscribe(result=> {
+      console.log(' result : ', result);
+      // this.barChartData.datasets.push({label: 'Q'+result?.index, data: [result?.processingTime!]});
+
+        this.barChartData.datasets[result?.index!].data.push(Number(result?.processingTime!.toFixed(2)));
+      this.chart?.update();
+
+    });
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -49,6 +58,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
       datalabels: {
         formatter: function (value, context) {
           // return context.dataset.label + '  (' + value + ')';
+          // return context.dataset.label + '\n' + value;
           return context.dataset.label;
         },
       }
@@ -59,16 +69,13 @@ export class ChartComponent implements OnInit, AfterViewInit {
     DataLabelsPlugin
   ];
   public barChartData: ChartData<'bar'> = {
-    labels: ['Case A', 'Case B'],
+    labels: ['DRAM only', 'DRAM & CXL Mem', 'DRAM &CXL Mem w/ NDP', 'DRAM &{CXL Mem w/ NDP}x2'],
     datasets: [
-      {
-        label: 'Q1',
-        data: [10, 20],
-      },
-      {
-        label: 'Q2',
-        data: [15, 20],
-      },
+      { label: 'Q1', data: [5, 4, 3],}, {label: 'Q2', data: [5, 4, 3],},
+      {label: 'Q3', data: [5, 4, 3],}, {label: 'Q4', data: [5, 4, 3],},
+      {label: 'Q5', data: [5, 4, 3],}, {label: 'Q6', data: [5, 4, 3],},
+      {label: 'Q7', data: [5, 4, 3],}, {label: 'Q8', data: [5, 4, 3],},
+      {label: 'Q9', data: [5, 4, 3],}
     ],
   };
 
@@ -79,25 +86,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   public chartHovered({event, active}: { event?: ChartEvent, active?: {}[] }): void {
     // console.log(event, active);
-  }
-
-  ngAfterViewInit(): void {
-    const barChartData = this.barChartData;
-    // @ts-ignore
-    const chart = this.chart?.chart;
-    let index = 3;
-    let interval = setInterval(function () {
-      console.log('barChartData.datasets', barChartData.datasets);
-      if(index > 9)
-        clearInterval(interval);
-      barChartData.datasets.push({
-        label: 'Q' + index,
-        data: [15, 20],
-      });
-      // @ts-ignore
-      chart.update();
-      index++;
-    }, 3000);
   }
 
   // public randomize(): void {

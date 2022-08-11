@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { ImageModel } from '../model/image.model';
+import { ImageModelResult } from '../model/imageResult.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class DataService {
   private startProcessing = new ReplaySubject<string | null>(1);
   private finishProcessing = new ReplaySubject<string | null>(1);
   private nearestImage = new ReplaySubject<ImageModel[] | null>(1);
+  private result = new ReplaySubject<ImageModelResult | null>(1);
 
   getStartProcessing(): Observable<string | null> {
     return this.startProcessing.asObservable();
@@ -21,6 +23,11 @@ export class DataService {
   getNearestImage(): Observable<ImageModel[] | null> {
     return this.nearestImage.asObservable();
   }
+
+  getResult(): Observable<ImageModelResult | null> {
+    return this.result.asObservable();
+  }
+
   setStart(type: string) {
     this.startProcessing.next(type);
   }
@@ -31,6 +38,10 @@ export class DataService {
 
   setNearestImage(images: ImageModel[]) {
     this.nearestImage.next(images);
+  }
+
+  setResult(result: ImageModelResult) {
+    this.result.next(result);
   }
 
   constructor() {

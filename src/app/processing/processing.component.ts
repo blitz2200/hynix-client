@@ -36,10 +36,11 @@ export class ProcessingComponent implements OnInit {
   ngOnInit(): void {
 
     this.dataService.getStartProcessing().subscribe(async processor => {
+      this.resetDisplay();
       await this.findNearestImage(processor!);
-      if(processor != 'd') {
-        this.resetDisplay();
-      }
+      // if(processor != 'd') {
+      //   this.resetDisplay();
+      // }
       this.dataService.setFinish(processor!);
     });
   }
@@ -55,8 +56,10 @@ export class ProcessingComponent implements OnInit {
       spinner.classList.remove('!hidden');
       spinner.style.display="block";
       let imageModels = await this.queryService.query(memoryType, this.randomImages![i].index);
+
       console.log('imageModels', imageModels);
       this.dataService.setNearestImage(imageModels.nearestImages!);
+      this.dataService.setResult(imageModels);
       spinner.style.display="none";
       complete.classList.remove('!hidden');
       complete.style.display="block";

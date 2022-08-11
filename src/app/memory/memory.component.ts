@@ -19,24 +19,26 @@ export class MemoryComponent implements OnInit {
   ngOnInit(): void {
 
     this.dataService.getFinishProcessing().subscribe(type => {
-        // this.isLoading = type!;
-        if (type == 'a') {
-          this.isLoading = 'b';
-          this.dataService.setStart('b');
-        }
-        if (type == 'b') {
-          this.isLoading = 'c';
-          this.dataService.setStart('c');
-        }
+      this.isSubmitting = false;
 
-        if (type == 'c') {
-          this.isLoading = 'd';
-          this.dataService.setStart('d');
-        }
-
-        if (type == 'd') {
-          this.isSubmitting = false;
-        }
+      // this.isLoading = type!;
+        // if (type == 'a') {
+        //   this.isLoading = 'b';
+        //   this.dataService.setStart('b');
+        // }
+        // if (type == 'b') {
+        //   this.isLoading = 'c';
+        //   this.dataService.setStart('c');
+        // }
+        //
+        // if (type == 'c') {
+        //   this.isLoading = 'd';
+        //   this.dataService.setStart('d');
+        // }
+        //
+        // if (type == 'd') {
+        //   this.isSubmitting = false;
+        // }
       }
     )
   }
