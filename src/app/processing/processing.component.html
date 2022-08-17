@@ -1,20 +1,10 @@
-<mat-card class="m-3 max-w-xl">
-  <div>
-<!--    <button mat-raised-button (click)="onShuffleImageClick()"-->
-<!--            color="primary" class="!mb-3">Shuffle Image-->
-<!--    </button>-->
-    k=
-    <mat-form-field>
-      <input matInput type="number">
-    </mat-form-field>
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>City</mat-label>-->
-<!--      <input matInput placeholder="Ex. San Francisco">-->
-<!--    </mat-form-field>-->
+<div class="w-[604px] h-[481px] shadow-xl rounded-[10px] pl-[30px] pt-[30px] mr-[32px]">
+  <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
+    Analysis Image
   </div>
-  <mat-grid-list cols="3" rowHeight="1:1" class="max-w-lg">
-    <mat-grid-tile *ngFor="let image of randomImages">
-      <div [id]="'image-' + image.index" class="relative w-full h-full">
+  <mat-grid-list cols="5" rowHeight="1:1" class="max-w-lg">
+    <mat-grid-tile *ngFor="let image of randomImages; let i= index">
+      <div [id]="'image-' + i" class="relative w-full h-full">
 
         <img src='{{image.fileName}}' alt="" class="absolute z-0 object-cover">
         <div class="absolute layer z-40 !hidden"></div>
@@ -31,4 +21,25 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-</mat-card>
+
+  <div class="flex mt-[48px]">
+<!--    <button mat-raised-button (click)="onShuffleImageClick()"-->
+<!--            color="primary" class="!mb-3">Shuffle Image-->
+<!--    </button>-->
+    <div class="rounded-[60px] w-[130px] h-[34px] ml-[65px] mr-[50px] cursor-pointer
+    bg-[#E0E9F4] flex items-center justify-center text-[#242C3D] text-[14px] font-bold"
+         (click)="onSelectImage()">
+      Select Image
+    </div>
+    k=
+    <mat-form-field class="w-[30px]">
+      <input matInput type="number">
+    </mat-form-field>
+    <div class="rounded-[60px] w-[130px] h-[34px] ml-[65px] mr-[50px] cursor-pointer
+    bg-gradient-to-b from-[#F58025] to-[#E31837]
+    flex items-center justify-center text-white text-[14px] font-bold" (click)="onStart()" >
+      <mat-spinner diameter="22" class="m-3" color="white" *ngIf="isLoading"></mat-spinner>
+      <span *ngIf="!isLoading">Start</span>
+    </div>
+  </div>
+</div>

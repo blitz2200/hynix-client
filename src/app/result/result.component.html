@@ -1,10 +1,12 @@
-<mat-card class="m-3">
-  <mat-card-title>Top-k Results</mat-card-title>
-    <div  class="flex gap-3">
+<div class="w-[392px] h-[481px] shadow-xl rounded-[10px] pl-[30px] pt-[30px]">
+  <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
+    Top K Results
+  </div>
+    <div  class=" grid grid-cols-3 gap-[3px]">
       <img *ngFor="let image of nearestImage"
-           src="assets/images/{{image.fileName}}"
-           alt="" class="w-20 h-20 object-cover fade-in">
+           src="assets/images/image_net_sample/{{image.type}}/result/{{image.fileName}}"
+           alt="" class="w-[100px] h-[100px] object-cover fade-in">
     </div>
 
 
-</mat-card>
+</div>

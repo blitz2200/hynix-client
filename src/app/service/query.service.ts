@@ -14,7 +14,7 @@ export class QueryService {
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {
   }
 
-  query(memoryType: string, index:number): Promise<ImageModelResult> {
-    return lastValueFrom(this.http.get<ImageModelResult>(`${this.resourceUrl}/${memoryType}/${index}`));
+  query(memoryType: string, type:string, count: number): Promise<ImageModelResult> {
+    return lastValueFrom(this.http.get<ImageModelResult>(`${this.resourceUrl}/${memoryType}/${type}/${count}`));
   }
 }

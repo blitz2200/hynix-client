@@ -29,6 +29,8 @@ export class ChartComponent implements OnInit {
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
     indexAxis: 'y',
     scales: {
       gridLines: {

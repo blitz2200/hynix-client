@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ImageDialogComponent } from './processing/image-dialog/image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     MemoryComponent,
     ProcessingComponent,
     ResultComponent,
-    NavbarComponent
+    NavbarComponent,
+    ImageDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,10 +44,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatProgressSpinnerModule,
     MatIconModule,
     MatInputModule,
+    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ImageDialogComponent]
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService) {

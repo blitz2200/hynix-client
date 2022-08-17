@@ -1,13 +1,19 @@
-<mat-card class=" w-[600px] m-3">
-  <canvas  baseChart
-           [data]="barChartData"
-           [labels]="['Q1', 'Q2', 'Q3']"
-           [options]="barChartOptions"
-           [plugins]="barChartPlugins"
-           [type]="barChartType"
-           (chartHover)="chartHovered($event)"
-           (chartClick)="chartClicked($event)">
+<div class="w-[1028px] h-[340px] shadow-xl rounded-[10px] pl-[30px] pt-[30px] mb-[32px]">
+  <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
+    Execution Processing Time
+  </div>
+  <div class="w-[900px] h-[192px]">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [labels]="['Q1', 'Q2', 'Q3']"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [type]="barChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
 
-  </canvas>
+    </canvas>
+  </div>
 
-</mat-card>
+</div>
