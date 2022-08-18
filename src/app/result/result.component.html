@@ -1,12 +1,10 @@
-<div class="w-[392px] h-[481px] shadow-xl rounded-[10px] pl-[30px] pt-[30px]">
+<div class="w-[392px] h-[481px] shadow-xl rounded-[10px] px-[35px] pt-[30px]">
   <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
     Top K Results
   </div>
-    <div  class=" grid grid-cols-3 gap-[3px]">
+    <div  class=" grid grid-cols-3 gap-[11px]  h-[322px] overflow-y-auto">
       <img *ngFor="let image of nearestImage"
            src="assets/images/image_net_sample/{{image.type}}/result/{{image.fileName}}"
-           alt="" class="w-[100px] h-[100px] object-cover fade-in">
+           alt="" class="w-[100px] h-[100px] object-cover fade-in rounded-[2px]">
     </div>
-
-
 </div>

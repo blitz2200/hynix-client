@@ -3,6 +3,10 @@
 @tailwind utilities;
 body		{ font-family: 나눔스퀘어, 'NanumSquare', sans-serif; }
 
+textarea:focus, input:focus, select:focus{
+  outline: none;
+}
+
 .mat-progress-spinner circle, .mat-spinner circle {
   stroke: white !important;
 }

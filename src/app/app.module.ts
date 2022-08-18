@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ImageDialogComponent } from './processing/image-dialog/image-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ImageDialogComponent } from './processing/image-dialog/image-dialog.com
     HttpClientModule,
     AppRoutingModule,
     NgChartsModule,
+    FormsModule,
     MatGridListModule,
     MatButtonModule,
     MatCardModule,

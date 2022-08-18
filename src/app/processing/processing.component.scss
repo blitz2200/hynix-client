@@ -6,11 +6,6 @@ mat-grid-tile {
   //background: lightblue;
 }
 
-img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-}
 
 .spinnerShow {
   display: block;
@@ -18,10 +13,20 @@ img {
 
 .layer {
   width: 100%;
-  height: 100%;
-  background:rgba(0,0,0,0.5);
+  height: 100px;
+  background:#D9D9D9;
+  opacity: 0.5;
+  display: none;
   //background:
   //  linear-gradient(0deg, rgba(252, 252, 252, 0.7), rgba(252, 252, 252, 0.7)),
   //   #D9D9D9;
+}
+
+select {
+  width:30px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background:url('/assets/icons/arrow_down_icon.svg') no-repeat right;
 }
 
