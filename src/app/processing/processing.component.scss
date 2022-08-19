@@ -30,3 +30,17 @@ select {
   background:url('/assets/icons/arrow_down_icon.svg') no-repeat right;
 }
 
+.center-sinner {
+  animation: center-sinner 1s linear infinite;
+  -webkit-animation: center-sinner 1s linear infinite;
+  -moz-animation: center-sinner 1s linear infinite;
+  -o-animation: center-sinner 1s linear infinite;
+}
+@keyframes center-sinner {
+  0% {
+    transform:translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform:translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -10,7 +10,7 @@ export class DataService {
   private startProcessing = new ReplaySubject<string | null>(1);
   private finishProcessing = new ReplaySubject<string | null>(1);
   private nearestImage = new ReplaySubject<ImageModel[] | null>(1);
-  private result = new ReplaySubject<ImageModelResult | null>(1);
+  private result = new ReplaySubject<any>(1);
 
   getStartProcessing(): Observable<string | null> {
     return this.startProcessing.asObservable();
@@ -24,7 +24,7 @@ export class DataService {
     return this.nearestImage.asObservable();
   }
 
-  getResult(): Observable<ImageModelResult | null> {
+  getResult(): Observable<any> {
     return this.result.asObservable();
   }
 
@@ -40,7 +40,7 @@ export class DataService {
     this.nearestImage.next(images);
   }
 
-  setResult(result: ImageModelResult) {
+  setResult(result: any) {
     this.result.next(result);
   }
 

@@ -64,9 +64,8 @@ export class ProcessingComponent implements OnInit {
       button.style.color = 'white';
       let imageModels = await this.queryService.query(memoryType, this.selectedImages![i].type!, this.count);
 
-      console.log('imageModels', imageModels);
       this.dataService.setNearestImage(imageModels.nearestImages!);
-      this.dataService.setResult(imageModels);
+      this.dataService.setResult({image: imageModels, index:i});
       image.style.border = 'none';
 
       spinner.style.display = "none";
@@ -90,7 +89,6 @@ export class ProcessingComponent implements OnInit {
   }
 
   onStart() {
-    console.log('count', this.count);
     this.isLoading = true;
     this.dataService.setStart('a');
   }

@@ -1,35 +1,29 @@
 <div class="w-[604px] h-[481px] shadow-xl rounded-[10px] px-[30px] pt-[30px] mr-[32px]">
   <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
-    Analysis Image
+    Query Image
   </div>
   <div  class="grid grid-cols-5 gap-x-[11px] gap-y-[24px] auto-cols-auto">
     <div *ngFor="let image of selectedImages; let i= index"  [id]="'image-' + i"
          class="relative w-[100px] h-[124px]">
-<!--      <div [id]="'image-' + i" class="relative w-full h-full">-->
 
         <img src='{{image.fileName}}' alt="" class="absolute z-0 object-cover w-[100px] h-[100px] rounded-[2px] fade-in">
         <div class="absolute layer z-40"></div>
-    <!--    <mat-spinner class="absolute top-1/2
-         left-1/2 transform -translate-x-1/2
-         -translate-y-1/2 !hidden z-60">
-        </mat-spinner>-->
 
-      <img src="assets/icons/spinner_icon.svg" alt="" class="absolute z-60 right-[3px] top-[3px] hidden animate-spin">
 
-      <img src="assets/icons/check_icon.svg" alt="" class="absolute z-60 right-[3px] top-[3px] hidden">
+<!--      <img src="assets/icons/spinner_icon.svg" alt="" class="absolute z-60 right-[3px] top-[3px] hidden animate-spin">-->
+      <img src="assets/icons/spinner_icon.svg" alt="" class="absolute z-60 top-[50px]
+         left-1/2 center-sinner w-[38px] h-[38px] hidden">
 
-      <!--        <mat-icon aria-hidden="false" aria-label="Example home icon"
-                        class="!absolute top-1/2
-               left-1/2 transform -translate-x-1/2
-               -translate-y-1/2 !hidden z-60 col-white w-20 h-20"
-                        fontIcon="check"></mat-icon>-->
+<!--      <img src="assets/icons/check_icon.svg" alt="" class="absolute z-60 right-[3px] top-[3px] hidden">-->
+      <img src="assets/icons/check_icon.svg" alt="" class="absolute z-60  top-[50px]
+         left-1/2 transform -translate-x-1/2 -translate-y-1/2
+          w-[38px] h-[38px]
+           hidden">
 
       <div class="absolute w-full h-[18px] rounded-[17px] text-[#0E306D]
        text-[14px] font-bold flex justify-center items-center bottom-0">
         {{'Q'+(i+1)}}
       </div>
-
-<!--      </div>-->
     </div>
   </div>
 

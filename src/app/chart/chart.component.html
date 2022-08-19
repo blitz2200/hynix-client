@@ -1,19 +1,35 @@
 <div class="w-[1028px] h-[340px] shadow-xl rounded-[10px] pl-[30px] pt-[30px] mb-[32px]">
   <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
-    Execution Processing Time
+    Performance Comparison
   </div>
-  <div class="w-[900px] h-[192px]">
-    <canvas
-      baseChart
-      [data]="barChartData"
-      [labels]="['Q1', 'Q2', 'Q3']"
-      [options]="barChartOptions"
-      [plugins]="barChartPlugins"
-      [type]="barChartType"
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)">
+  <div class="flex w-full">
+    <div class="w-[200px] text-[#0E306D] font-bold text-[12px] pt-[14px]  " id="chart-label">
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM only</div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL Memory</div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL CMS</div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL CMS x2</div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL CMS x4</div>
+    </div>
 
-    </canvas>
+    <div>
+      <div class="w-[681px] h-[202px]">
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [labels]="['Q1', 'Q2', 'Q3']"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [type]="barChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+
+        </canvas>
+      </div>
+      <div class="text-[14px] font-bold text-[#0E306D] mt-[20px] text-center">
+        Execution Time
+      </div>
+    </div>
   </div>
+
 
 </div>
