@@ -31,8 +31,9 @@
 <!--    <button mat-raised-button (click)="onShuffleImageClick()"-->
 <!--            color="primary" class="!mb-3">Shuffle Image-->
 <!--    </button>-->
-    <div class="rounded-[60px] w-[130px] h-[34px] ml-[65px] mr-[50px] cursor-pointer
-    bg-[#E0E9F4] flex items-center justify-center text-[#242C3D] text-[14px] font-bold"
+    <div class="rounded-[60px] w-[130px] h-[34px] ml-[65px] mr-[50px]
+    bg-[#E0E9F4] flex items-center justify-center text-[14px] font-bold border-solid border-[1px] border-[#C3D4E9]"
+         [ngClass]="isLoading ? 'select-image-disable': 'select-image-enable'"
          (click)="onSelectImage()">
       Select Image
     </div>
@@ -46,13 +47,13 @@
         <option [ngValue]="21">21</option><option [ngValue]="22">22</option><option [ngValue]="23">23</option><option [ngValue]="24">24</option><option [ngValue]="25">25</option>
       </select>
     </div>
-    <div class="rounded-[60px] w-[130px] h-[34px] ml-[49px] mr-[50px] cursor-pointer
+    <div class="rounded-[60px] w-[130px] h-[34px] ml-[49px] mr-[50px]
     bg-gradient-to-b from-[#F58025] to-[#E31837]
     flex items-center justify-center text-white text-[14px] font-bold" (click)="onStart()" >
 <!--      <mat-spinner diameter="22" class="m-3" color="white" *ngIf="isLoading"></mat-spinner>-->
       <img src="assets/icons/spinner_small_icon.svg" alt="" class="animate-spin w-[20px] h-205px]"  *ngIf="isLoading">
 
-      <span *ngIf="!isLoading">Start</span>
+      <span *ngIf="!isLoading" class="cursor-pointer">Start</span>
     </div>
   </div>
 </div>

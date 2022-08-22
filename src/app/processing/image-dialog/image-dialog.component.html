@@ -1,7 +1,7 @@
 <div class="flex h-[80px] px-[50px] justify-between items-center">
   <div class="font-bold text-[30px] text-[#0E306D]">Select Image</div>
   <div class="font-bold text-[12px] text-[#0E306D]">
-    <span class="text-[#F58025]">0</span> image(s) selected
+    <span class="text-[#F58025]">{{selectedImage.length}}</span> image(s) selected
   </div>
 </div>
 <div class="flex h-[4px] ">
@@ -16,34 +16,18 @@
   </div>
   <div class="cursor-pointer rounded-[4px] bg-[#327FF3] w-[60px] h-[29px]
    flex justify-center items-center
-  text-white font-semibold text-[12px]">
+  text-white font-semibold text-[12px]" (click)="onSave()">
     Save
   </div>
 </div>
 <div class="grid grid-cols-6 gap-[24px] px-[50px] mt-[32px] mb-[32px]">
-  <div *ngFor="let image of sampleImages; let i= index">
-    <img src='{{image.fileName}}' alt=""
+  <div *ngFor="let image of sampleImages; let i= index" class="relative">
+    <img src='{{image.fileName}}' alt="" (click)="toggleImage(image)"
+         [ngClass]="checkActiveImage(image)"
          class="w-[170px] h-[170px] z-0 object-cover fade-in rounded-[2px]">
+    <img  *ngIf="checkImage(image)"
+
+      src="assets/icons/modal_check_icon.svg" alt="modal check image"
+         class="absolute right-[8px] top-[8px]">
   </div>
 </div>
-
-
-<!--<mat-grid-list cols="5" rowHeight="1:1">
-  <mat-grid-tile *ngFor="let image of randomImages; let i= index">
-    <div [id]="'image-' + i" class="relative w-full h-full">
-
-      <img src='{{image.fileName}}' alt="" class="absolute z-0 object-cover">
-      <div class="absolute layer z-40 !hidden"></div>
-      <mat-spinner class="absolute top-1/2
-         left-1/2 transform -translate-x-1/2
-         -translate-y-1/2 !hidden z-60">
-      </mat-spinner>
-      <mat-icon aria-hidden="false" aria-label="Example home icon"
-                class="!absolute top-1/2
-         left-1/2 transform -translate-x-1/2
-         -translate-y-1/2 !hidden z-60 col-white w-20 h-20"
-                fontIcon="check"></mat-icon>
-
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>-->

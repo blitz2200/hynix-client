@@ -4,11 +4,29 @@
   </div>
   <div class="flex w-full">
     <div class="w-[200px] text-[#0E306D] font-bold text-[12px] pt-[14px]  " id="chart-label">
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM only</div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL Memory</div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL CMS</div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL CMS x2</div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px]">DRAM & CXL CMS x4</div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+           [ngClass]="enterMouseMemoryType === 'a' ? 'active-label': 'inactive-label'"
+           (mouseenter)="mouseEnter('a')" (mouseleave)="mouseLeave('a')">DRAM only</div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+           [ngClass]="enterMouseMemoryType === 'b' ? 'active-label': 'inactive-label'"
+           (mouseenter)="mouseEnter('b')" (mouseleave)="mouseLeave('b')">
+        DRAM & CXL Memory
+      </div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+           [ngClass]="enterMouseMemoryType === 'c' ? 'active-label': 'inactive-label'"
+           (mouseenter)="mouseEnter('c')" (mouseleave)="mouseLeave('c')">
+        DRAM & CXL CMS
+      </div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+           [ngClass]="enterMouseMemoryType === 'd' ? 'active-label': 'inactive-label'"
+           (mouseenter)="mouseEnter('d')" (mouseleave)="mouseLeave('d')">
+        DRAM & CXL CMS x2
+      </div>
+      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+           [ngClass]="enterMouseMemoryType === 'e' ? 'active-label': 'inactive-label'"
+           (mouseenter)="mouseEnter('e')" (mouseleave)="mouseLeave('e')">
+        DRAM & CXL CMS x4
+      </div>
     </div>
 
     <div>

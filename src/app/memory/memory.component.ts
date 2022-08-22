@@ -12,16 +12,21 @@ export class MemoryComponent implements OnInit {
   isALoading: boolean = false;
   isBLoading: boolean = false;
   isLoading: string = '';
+  memoryType: string = 'c';
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
+    this.dataService.getStartProcessing().subscribe(data => {
+      this.memoryType = data.processor;
+
+    });
 
     this.dataService.getFinishProcessing().subscribe(type => {
-      this.isSubmitting = false;
+        this.isSubmitting = false;
 
-      // this.isLoading = type!;
+        // this.isLoading = type!;
         // if (type == 'a') {
         //   this.isLoading = 'b';
         //   this.dataService.setStart('b');
@@ -43,12 +48,4 @@ export class MemoryComponent implements OnInit {
     )
   }
 
-  onStart() {
-    this.isSubmitting = true;
-    this.isALoading = true;
-    // this.dataService.aStart();
-
-    this.dataService.setStart('a');
-    this.isLoading = 'a';
-  }
 }

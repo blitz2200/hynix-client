@@ -44,3 +44,12 @@ select {
     transform:translate(-50%, -50%) rotate(360deg);
   }
 }
+
+.select-image-enable {
+  color:#242C3D !important;
+  cursor:pointer;
+}
+.select-image-disable {
+  color: #CACACA !important;
+  cursor: default;
+}

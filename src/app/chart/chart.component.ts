@@ -18,13 +18,20 @@ export class ChartComponent implements OnInit {
   }
 
   lastIndex = 9
+
   ngOnInit(): void {
+    this.dataService.getStartProcessing().subscribe(data => {
+      if (data.query) {
+        this.currentMemoryType = data.processor;
+        this.enterMouseMemoryType = data.processor;
+      }
+    })
     this.dataService.getResult().subscribe(result => {
 
       // 재 시작하기 전에 이전 초기화된데이터로 차트 업데이트
       if (result.index == 0) {
         // @ts-ignore
-        this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['white','white','#0E306D'];
+        this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['white', 'white', '#0E306D'];
         this.chart!.chart!.options!.scales!['y']!.ticks!.color = ['#0E306D', '#0E306D', 'white'];
         // // @ts-ignore
         // this.chart!.options!.scales!['y']!.ticks!.backdropColor = 'black';
@@ -45,7 +52,7 @@ export class ChartComponent implements OnInit {
           this.barChartData.datasets[i].data.push(0.7);
         }
         this.chart?.update();
-        for(let j=0; j<3; j++){
+        for (let j = 0; j < 3; j++) {
           for (let i = 0; i <= this.lastIndex; i++) {
             this.barChartData.datasets[i].data.pop();
           }
@@ -55,6 +62,8 @@ export class ChartComponent implements OnInit {
     });
   }
 
+  enterMouseMemoryType = '';
+  currentMemoryType = '';
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
@@ -208,6 +217,19 @@ export class ChartComponent implements OnInit {
 
   public chartHovered({event, active}: { event?: ChartEvent, active?: {}[] }): void {
     // console.log(event, active);
+  }
+
+  mouseEnter(type: string) {
+    this.enterMouseMemoryType = type;
+    this.dataService.setStart({'processor': type, 'query': false});
+  }
+
+  mouseLeave(type: string) {
+    this.enterMouseMemoryType = this.currentMemoryType;
+    this.dataService.setStart({
+      'processor': this.currentMemoryType === '' ? 'c' : this.currentMemoryType,
+      'query': false
+    });
   }
 }
 

@@ -1,6 +1,6 @@
-<div class="pl-[30px] pt-[30px] w-[604px] h-[853px] !rounded-[10px] shadow-xl">
+<div class="pl-[30px] pt-[30px] w-[604px] h-[853px] !rounded-[10px] shadow-xl" [ngSwitch]="true">
   <div class="text-[24px] text-[#0E306D] font-bold mb-[25px] leading-[24px]">
-    System Mode: <span>DRAM & CXL Mem w/ NDP</span>
+    System Configuration: <span>DRAM & CXL Mem w/ NDP</span>
   </div>
   <div class="memoryBorder w-[544px] flex h-[110px] mb-[8px]">
     <img src="assets/icons/telecom_icon.svg"
@@ -8,40 +8,53 @@
     <img src="assets/icons/lighting_db_icon.svg" alt="" class="w-[198px] h-[89px] mt-[8px]">
   </div>
 
-  <div class="memoryBorder w-[544px] flex h-[110px] mb-[8px]">
+  <div class="memoryBorder w-[544px] flex h-[110px] mb-[8px] fade-in" *ngSwitchCase="memoryType === 'c'">
     <img src="assets/icons/hynix_icon.svg"
          class="w-[88px] h-[46px] mr-[71px] mt-[31px] ml-[22px]" alt="">
-    <span>
+    <span class="mt-[46px]  text-[18px] font-bold text-[#0E306D]">
       CMSDK
     </span>
-    <span>1</span>
+    <span class="mt-[46px]  mr-[35px] text-[14px] text-[#0E306D] font-bold">1</span>
+    <div class="flex flex-col font-bold text-[18px] text-[#0E306D] justify-center">
+      <span class=" mb-[10px]">Data Analytics Library</span>
+      <span class="h-[1px] w-[198px] bg-[#0E306D]"></span>
+      <span class="mt-[11px]">CXL CMS Device Driver</span>
+    </div>
   </div>
-  <div class="memoryBorder w-[544px] flex h-[471px]  mb-[12px]">
-
+  <div class="w-[544px] flex h-[110px] mb-[8px] fade-in" *ngSwitchCase="memoryType !== 'c'">
+    <img src="assets/images/memory/memory_cmsdk_disabled.svg"
+         class="w-[544px] h-[110px]" alt="memory_cmsdk_disabled">
+  </div>
+  <div class="memoryBorder w-[544px] flex h-[471px]  mb-[12px] justify-center" >
+    <img src="assets/images/memory/memory_a.svg" alt="" class="w-[391px] h-[450px] mt-[13px] fade-in"  *ngSwitchCase="memoryType === 'a'">
+    <img src="assets/images/memory/memory_b.svg" alt="" class="w-[524] h-[454px] mt-[10px] fade-in"  *ngSwitchCase="memoryType === 'b'">
+    <img src="assets/images/memory/memory_c.svg" alt="" class="w-[391px] h-[450px] mt-[13px] fade-in"  *ngSwitchCase="memoryType === 'c'">
+    <img src="assets/images/memory/memory_d.svg" alt="" class="w-[391px] h-[450px] mt-[13px] fade-in"  *ngSwitchCase="memoryType === 'd'">
+    <img src="assets/images/memory/memory_e.svg" alt="" class="w-[391px] h-[450px] mt-[13px] fade-in"  *ngSwitchCase="memoryType === 'e'">
   </div>
   <div class="text-[10px] font-bold text-[#0E306D]">
     1. CMSDK: Computational Memory Software Development Kit <br>
     2. CMS: Computational Memory Solution <br>
     3. NMP: Near Memory Processing
   </div>
-<!--
-  <div [ngClass]="isLoading == 'b' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-3">
-    <div>Case B</div>
-    <img src="assets/icons/lighting_db_ico" alt="" width="150" height="150">
-  </div>
+  <!--
+    <div [ngClass]="isLoading == 'b' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-3">
+      <div>Case B</div>
+      <img src="assets/icons/lighting_db_ico" alt="" width="150" height="150">
+    </div>
 
-  <div [ngClass]="isLoading == 'c' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-3">
-    <div>Case C</div>
-    <img src="https://picsum.photos/350/350" alt="" width="150" height="150">
-  </div>
+    <div [ngClass]="isLoading == 'c' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-3">
+      <div>Case C</div>
+      <img src="https://picsum.photos/350/350" alt="" width="150" height="150">
+    </div>
 
-  <div [ngClass]="isLoading == 'd' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-3">
-    <div>Case D</div>
-    <img src="https://picsum.photos/250/250" alt="" width="150" height="150">
-  </div>
+    <div [ngClass]="isLoading == 'd' ? 'memoryBorder' : 'memoryNoneBorder' " class="p-3 mb-3">
+      <div>Case D</div>
+      <img src="https://picsum.photos/250/250" alt="" width="150" height="150">
+    </div>
 
-  <button mat-raised-button color="primary" (click)="onStart()" [disabled]="isSubmitting">
-    <mat-spinner diameter="25" class="m-3" *ngIf="isSubmitting"></mat-spinner>
-    <span *ngIf="!isSubmitting">START</span>
-  </button>-->
+    <button mat-raised-button color="primary" (click)="onStart()" [disabled]="isSubmitting">
+      <mat-spinner diameter="25" class="m-3" *ngIf="isSubmitting"></mat-spinner>
+      <span *ngIf="!isSubmitting">START</span>
+    </button>-->
 </div>

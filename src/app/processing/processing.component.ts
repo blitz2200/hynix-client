@@ -6,6 +6,7 @@ import { images } from '../data/image.data';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import * as _ from 'lodash';
+import { IRequest } from '../model/request.model';
 
 @Component({
   selector: 'app-processing',
@@ -13,7 +14,7 @@ import * as _ from 'lodash';
   styleUrls: ['./processing.component.scss']
 })
 export class ProcessingComponent implements OnInit {
-  isLoading = false;
+  isLoading:boolean = false;
   selectedImages?: ImageModel[] = [];
   count = 9;
 
@@ -32,12 +33,15 @@ export class ProcessingComponent implements OnInit {
     this.selectedImages = this.selectedImages!.sort(() => Math.random() - 0.5).slice(0, 10);
     // this.randomImages = images.slice(0, 10);
     this.dataService.getStartProcessing().subscribe(async processor => {
-      this.resetDisplay();
-      await this.findNearestImage(processor!);
-      // if(processor != 'd') {
-      //   this.resetDisplay();
-      // }
-      this.dataService.setFinish(processor!);
+      if (processor.query) {
+        this.resetDisplay();
+        await this.findNearestImage(processor!);
+        // if(processor != 'd') {
+        //   this.resetDisplay();
+        // }
+        this.dataService.setFinish(processor!);
+      }
+
     });
   }
 
@@ -62,10 +66,17 @@ export class ProcessingComponent implements OnInit {
       spinner.style.display = "block";
       button.style.backgroundColor = '#F58025';
       button.style.color = 'white';
-      let imageModels = await this.queryService.query(memoryType, this.selectedImages![i].type!, this.count);
-
-      this.dataService.setNearestImage(imageModels.nearestImages!);
-      this.dataService.setResult({image: imageModels, index:i});
+      // let imageModels = await this.queryService.query(memoryType, this.selectedImages![i].type!, this.count);
+      const request = this.createRequest(this.selectedImages![i].type!);
+      const startTime = new Date().valueOf();
+      let knnResult = await this.queryService.getKNNResult(request);
+      knnResult = {
+        ...knnResult,
+        imageType: this.selectedImages![i].type!,
+        processingTime:(new Date().valueOf() -  startTime) /1000,
+      }
+      this.dataService.setNearestImage(knnResult);
+      this.dataService.setResult({image: knnResult, index: i});
       image.style.border = 'none';
 
       spinner.style.display = "none";
@@ -75,6 +86,16 @@ export class ProcessingComponent implements OnInit {
       button.style.color = '#0E306D';
     }
     this.isLoading = false;
+  }
+
+  protected createRequest(type: string): IRequest {
+    return {
+      knnSize: this.count,
+      knnType: 0,
+      knnThreshold: -1,
+      features: [],
+      imageType: type,
+    };
   }
 
   private resetDisplay() {
@@ -89,11 +110,17 @@ export class ProcessingComponent implements OnInit {
   }
 
   onStart() {
+    if(this.isLoading) {
+      return;
+    }
     this.isLoading = true;
-    this.dataService.setStart('a');
+    this.dataService.setStart({'processor':'c', 'query': true});
   }
 
   onSelectImage(): void {
+    if(this.isLoading) {
+      return;
+    }
     const dialogRef = this.dialog.open(ImageDialogComponent, {
       width: '1241px',
       height: '860px',
@@ -102,8 +129,8 @@ export class ProcessingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed : ' , result);
-      if(result) {
+      if (result) {
+        this.resetDisplay();
         this.selectedImages = result;
       }
     });
