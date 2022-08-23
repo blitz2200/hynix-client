@@ -13,11 +13,22 @@ export class ResultComponent implements OnInit {
 
   constructor(private dataService: DataService,) { }
 
-  nearestImage?: Response;
 
+  nearestImage?: Response;
+  nearestImageList: Response[] =[];
   ngOnInit(): void {
     this.dataService.getNearestImage().subscribe(async nearestImage => {
-      this.nearestImage = nearestImage!;
+      if(nearestImage.index == 0) {
+        this.nearestImageList = []
+      }
+      this.nearestImage = nearestImage.image;
+      this.nearestImageList.push(nearestImage.image);
+    });
+
+    this.dataService.getSelectImage().subscribe(index=> {
+      if(this.nearestImageList.length ==10) {
+        this.nearestImage = this.nearestImageList[index];
+      }
     });
   }
 

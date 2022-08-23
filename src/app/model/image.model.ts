@@ -3,6 +3,7 @@ export class ImageModel {
     public index: number,
     public fileName?: string | null,
     public type?: string,
+    public feature?: number[],
   ) {}
 }
 

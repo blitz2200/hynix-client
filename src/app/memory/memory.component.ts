@@ -22,30 +22,22 @@ export class MemoryComponent implements OnInit {
       this.memoryType = data.processor;
 
     });
-
-    this.dataService.getFinishProcessing().subscribe(type => {
-        this.isSubmitting = false;
-
-        // this.isLoading = type!;
-        // if (type == 'a') {
-        //   this.isLoading = 'b';
-        //   this.dataService.setStart('b');
-        // }
-        // if (type == 'b') {
-        //   this.isLoading = 'c';
-        //   this.dataService.setStart('c');
-        // }
-        //
-        // if (type == 'c') {
-        //   this.isLoading = 'd';
-        //   this.dataService.setStart('d');
-        // }
-        //
-        // if (type == 'd') {
-        //   this.isSubmitting = false;
-        // }
-      }
-    )
   }
 
+  currentMemory(): string {
+    switch (this.memoryType) {
+      case 'a':
+        return 'DRAM only';
+      case 'b':
+        return 'DRAM & CXL Memory';
+      case 'c':
+        return 'DRAM & CXL CMS';
+      case 'd':
+        return 'DRAM & CXL CMS x2';
+      case 'e':
+        return 'DRAM & CXL CMS x4';
+      default:
+        return 'DRAM & CXL CMS';
+    }
+  }
 }

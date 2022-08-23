@@ -4,7 +4,7 @@
   </div>
   <div  class="grid grid-cols-5 gap-x-[11px] gap-y-[24px] auto-cols-auto">
     <div *ngFor="let image of selectedImages; let i= index"  [id]="'image-' + i"
-         class="relative w-[100px] h-[124px]">
+         class="relative w-[100px] h-[124px]" (click)="onClickImage(i)">
 
         <img src='{{image.fileName}}' alt="" class="absolute z-0 object-cover w-[100px] h-[100px] rounded-[2px] fade-in">
         <div class="absolute layer z-40"></div>

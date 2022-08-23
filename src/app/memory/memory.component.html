@@ -1,6 +1,6 @@
 <div class="pl-[30px] pt-[30px] w-[604px] h-[853px] !rounded-[10px] shadow-xl" [ngSwitch]="true">
   <div class="text-[24px] text-[#0E306D] font-bold mb-[25px] leading-[24px]">
-    System Configuration: <span>DRAM & CXL Mem w/ NDP</span>
+    System Configuration: <span>{{currentMemory()}}</span>
   </div>
   <div class="memoryBorder w-[544px] flex h-[110px] mb-[8px]">
     <img src="assets/icons/telecom_icon.svg"
@@ -8,20 +8,20 @@
     <img src="assets/icons/lighting_db_icon.svg" alt="" class="w-[198px] h-[89px] mt-[8px]">
   </div>
 
-  <div class="memoryBorder w-[544px] flex h-[110px] mb-[8px] fade-in" *ngSwitchCase="memoryType === 'c'">
+  <div class="memoryBorder w-[544px] flex h-[110px] mb-[8px] fade-in" *ngSwitchCase="memoryType !== 'a'">
     <img src="assets/icons/hynix_icon.svg"
          class="w-[88px] h-[46px] mr-[71px] mt-[31px] ml-[22px]" alt="">
-    <span class="mt-[46px]  text-[18px] font-bold text-[#0E306D]">
+    <span class="mt-[46px]  text-[18px] font-bold text-[#0E306D]" [ngStyle]="{'opacity': memoryType === 'b' ? '0.05' : '1'}">
       CMSDK
     </span>
-    <span class="mt-[46px]  mr-[35px] text-[14px] text-[#0E306D] font-bold">1</span>
+    <span class="mt-[46px]  mr-[35px] text-[14px] text-[#0E306D] font-bold" [ngStyle]="{'opacity': memoryType === 'b' ? '0.05' : '1'}">1</span>
     <div class="flex flex-col font-bold text-[18px] text-[#0E306D] justify-center">
-      <span class=" mb-[10px]">Data Analytics Library</span>
+      <span class=" mb-[10px]" [ngStyle]="{'opacity': memoryType === 'b' ? '0.05' : '1'}">Data Analytics Library</span>
       <span class="h-[1px] w-[198px] bg-[#0E306D]"></span>
       <span class="mt-[11px]">CXL CMS Device Driver</span>
     </div>
   </div>
-  <div class="w-[544px] flex h-[110px] mb-[8px] fade-in" *ngSwitchCase="memoryType !== 'c'">
+  <div class="w-[544px] flex h-[110px] mb-[8px] fade-in" *ngSwitchCase="memoryType === 'a'">
     <img src="assets/images/memory/memory_cmsdk_disabled.svg"
          class="w-[544px] h-[110px]" alt="memory_cmsdk_disabled">
   </div>

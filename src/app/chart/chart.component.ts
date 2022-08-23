@@ -22,28 +22,31 @@ export class ChartComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getStartProcessing().subscribe(data => {
       if (data.query) {
+        this.resetChartLabel();
         this.currentMemoryType = data.processor;
-        this.enterMouseMemoryType = data.processor;
       }
     })
     this.dataService.getResult().subscribe(result => {
 
-      // 재 시작하기 전에 이전 초기화된데이터로 차트 업데이트
-      if (result.index == 0) {
-        // @ts-ignore
-        this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['white', 'white', '#0E306D'];
-        this.chart!.chart!.options!.scales!['y']!.ticks!.color = ['#0E306D', '#0E306D', 'white'];
-        // // @ts-ignore
-        // this.chart!.options!.scales!['y']!.ticks!.backdropColor = 'black';
-        // this.chart!.options!.scales!['y']!.ticks!.color = 'red';
-        this.chart?.update();
-      }
+      this.currentMemoryType = result.memoryType;
+      console.log('this.barChartData.datasets[result?.index!]', this.barChartData.datasets[result?.index!]);
+      console.log('result : ', result);
+      console.log('Number(result?.image?.processingTime!.toFixed(2)) : ', Number(result?.image?.processingTime!.toFixed(2)));
+
+      // @ts-ignore
+      // this.barChartData.datasets[result?.index!].push({
+      //     label: 'Q' + (result.index+1),
+      //     data: [Number(result?.image?.processingTime!.toFixed(2))],
+      //     barThickness: 26,
+      //     backgroundColor: ['rgba(245, 128, 37)', 'rgba(245, 128, 37)', 'rgba(37, 120, 245)', 'rgba(245, 128, 37)', 'rgba(245, 128, 37)'],
+      // });
+
 
       this.barChartData.datasets[result?.index!].data.push(Number(result?.image?.processingTime!.toFixed(2)));
       this.chart?.update();
 
       // 마지막 데이터 없애기 차트는 다음 시작할때 업데이트함
-      if (result.index == this.lastIndex) {
+/*      if (result.index == this.lastIndex) {
         // *2 *4 데이터 없데이트 하기
         for (let i = 0; i <= this.lastIndex; i++) {
           this.barChartData.datasets[i].data.push(0.8);
@@ -57,7 +60,7 @@ export class ChartComponent implements OnInit {
             this.barChartData.datasets[i].data.pop();
           }
         }
-      }
+      }*/
 
     });
   }
@@ -149,61 +152,61 @@ export class ChartComponent implements OnInit {
     datasets: [
       {
         label: 'Q1',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37)', 'rgba(245, 128, 37)', 'rgba(37, 120, 245)', 'rgba(245, 128, 37)', 'rgba(245, 128, 37)'],
       },
       {
         label: 'Q2',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.9)', 'rgba(245, 128, 37,0.9)', 'rgba(37, 120, 245, 0.9)', 'rgba(245, 128, 37,0.9)', 'rgba(245, 128, 37,0.9)',]
       },
       {
         label: 'Q3',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.8)', 'rgba(245, 128, 37,0.8)', 'rgba(37, 120, 245, 0.8)', 'rgba(245, 128, 37,0.8)', 'rgba(245, 128, 37,0.8)',]
       },
       {
         label: 'Q4',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.7)', 'rgba(245, 128, 37,0.7)', 'rgba(37, 120, 245, 0.7)', 'rgba(245, 128, 37,0.7)', 'rgba(245, 128, 37,0.7)',]
       },
       {
         label: 'Q5',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.6)', 'rgba(245, 128, 37,0.6)', 'rgba(37, 120, 245, 0.6)', 'rgba(245, 128, 37,0.6)', 'rgba(245, 128, 37,0.6)',]
       },
       {
         label: 'Q6',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.5)', 'rgba(245, 128, 37,0.5)', 'rgba(37, 120, 245, 0.5)', 'rgba(245, 128, 37,0.5)', 'rgba(245, 128, 37,0.5)',]
       },
       {
         label: 'Q7',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.4)', 'rgba(245, 128, 37,0.4)', 'rgba(37, 120, 245, 0.4)', 'rgba(245, 128, 37,0.4)', 'rgba(245, 128, 37,0.4)',]
       },
       {
         label: 'Q8',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.3)', 'rgba(245, 128, 37,0.3)', 'rgba(37, 120, 245, 0.3)', 'rgba(245, 128, 37,0.3)', 'rgba(245, 128, 37,0.3)',]
       },
       {
         label: 'Q9',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.2)', 'rgba(245, 128, 37,0.2)', 'rgba(37, 120, 245, 0.2)', 'rgba(245, 128, 37,0.2)', 'rgba(245, 128, 37,0.2)',]
       },
       {
         label: 'Q10',
-        data: [1.5, 1.2],
+        data: [],
         barThickness: 26,
         backgroundColor: ['rgba(245, 128, 37,0.15)', 'rgba(245, 128, 37,0.15)', 'rgba(37, 120, 245, 0.15)', 'rgba(245, 128, 37,0.15)', 'rgba(245, 128, 37,0.15)',]
       }
@@ -222,6 +225,16 @@ export class ChartComponent implements OnInit {
   mouseEnter(type: string) {
     this.enterMouseMemoryType = type;
     this.dataService.setStart({'processor': type, 'query': false});
+    for (let i = 0; i < this.barChartData.datasets.length; i++) {
+      if (type === 'a') {
+        // this.barChartData.datasets[i].backgroundColor = ['rgba(245, 128, 37)', 'rgba(245, 128, 37, 1)',
+        //   'rgba(37, 120, 245)', 'rgba(245, 128, 37, 1)', 'rgba(245, 128, 37, 1)',];
+      } else if (type === 'b') {
+
+      }
+
+    }
+    // this.chart?.update();
   }
 
   mouseLeave(type: string) {
@@ -230,6 +243,13 @@ export class ChartComponent implements OnInit {
       'processor': this.currentMemoryType === '' ? 'c' : this.currentMemoryType,
       'query': false
     });
+  }
+
+  private resetChartLabel() {
+    // @ts-ignore
+    this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['#0E306D','white', 'white','white', 'white',];
+    this.chart!.chart!.options!.scales!['y']!.ticks!.color = [ 'white','#0E306D', '#0E306D','#0E306D', '#0E306D'];
+    this.chart?.update();
   }
 }
 
