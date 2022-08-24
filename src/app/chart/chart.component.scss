@@ -8,3 +8,32 @@
   color: #0E306D;
 }
 
+canvas {
+  border-bottom: 2.5624px solid #D0D0D0;
+  border-left: 1px solid #D0D0D0;
+}
+
+
+.progressBar {
+  animation: progressbar-countdown;
+  /* Placeholder, this will be updated using javascript */
+  animation-duration: 20s;
+  /* We stop in the end */
+  animation-iteration-count: 1;
+  /* Stay on pause when the animation is finished finished */
+  animation-fill-mode: backwards;
+  /* We start paused, we start the animation using javascript */
+  animation-play-state: paused;
+  /* We want a linear animation, ease-out is standard */
+  animation-timing-function: linear;
+}
+@keyframes progressbar-countdown {
+  0% {
+    width: 0;
+    background: #F58025;
+  }
+  100% {
+    width: 100%;
+    background: #F58025;
+  }
+}

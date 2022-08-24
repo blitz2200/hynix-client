@@ -36,7 +36,7 @@ export const images: ImageModel[] = [
   new ImageModel(31,  filePath + 'fish/n01443537_4188.JPEG',  'fish'),
   new ImageModel(32,  filePath + 'flower/n11939491_563.JPEG',  'flower'),
   new ImageModel(33,  filePath + 'football/n03379051_79.JPEG',  'football'),
-  new ImageModel(34,  filePath + 'gimono/n03617480_878.JPEG',  'gimono'),
+  // new ImageModel(34,  filePath + 'gimono/n03617480_878.JPEG',  'gimono'),
   new ImageModel(35,  filePath + 'gradecap/n03787032_12481.JPEG',  'gradecap'),
   new ImageModel(36,  filePath + 'hatman/n04259630_162.JPEG',  'hatman'),
   new ImageModel(37,  filePath + 'horse/n02389026_183.JPEG',  'horse'),

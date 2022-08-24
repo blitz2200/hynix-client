@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 
@@ -11,27 +11,69 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-
+  @ViewChild('canvas', {static: true}) canvas?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('progressBar', {static: true}) progressBar?: ElementRef<HTMLCanvasElement>;
+  private ctx?: CanvasRenderingContext2D;
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   constructor(private dataService: DataService) {
   }
 
-  lastIndex = 9
+  lastIndex = 9;
+  lastAx = 0;
+  lastBx = 0;
+  lastCx = 0;
+  lastDx = 0;
+  lastEx = 0;
 
   ngOnInit(): void {
+    this.ctx = this.canvas!.nativeElement!.getContext('2d')!;
+    this.ctx.font = "bold 14px 나눔스퀘어";
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+
     this.dataService.getStartProcessing().subscribe(data => {
       if (data.query) {
-        this.resetChartLabel();
-        this.currentMemoryType = data.processor;
+        let progressbar: any = document.getElementsByClassName(`progressBar`)[0];
+        // let progressbarInner = document.createElement('div');
+        // progressbarInner.className = 'inner';
+        //
+        // // Now we set the animation parameters
+        // progressbarInner.style.animationDuration = '20s';
+        // progressbar.appendChild(progressbarInner);
+        progressbar.style.animationPlayState = 'running';
+
+        // this.resetChartLabel();
+        this.ctx!.clearRect(0, 0, this.canvas!.nativeElement.width, this.canvas!.nativeElement.height);
+        this.lastAx = 0;
+        this.lastBx = 0;
+        this.lastCx = 0;
+        this.lastDx = 0;
+        this.lastEx = 0;
+        this.currentMemoryType = data.memoryType;
+        this.enterMouseMemoryType = data.memoryType;
       }
+
     })
     this.dataService.getResult().subscribe(result => {
 
       this.currentMemoryType = result.memoryType;
-      console.log('this.barChartData.datasets[result?.index!]', this.barChartData.datasets[result?.index!]);
-      console.log('result : ', result);
-      console.log('Number(result?.image?.processingTime!.toFixed(2)) : ', Number(result?.image?.processingTime!.toFixed(2)));
+      if (result.memoryType === 'a') {
+        this.drawA(result);
+      }
+      if (result.memoryType === 'b') {
+        this.drawB(result);
+      }
+      if (result.memoryType === 'c') {
+        this.drawC(result);
+      }
+      if (result.memoryType === 'd') {
+        this.drawD(result);
+      }
+      if (result.memoryType === 'e') {
+        this.drawE(result);
+      }
+
 
       // @ts-ignore
       // this.barChartData.datasets[result?.index!].push({
@@ -41,28 +83,77 @@ export class ChartComponent implements OnInit {
       //     backgroundColor: ['rgba(245, 128, 37)', 'rgba(245, 128, 37)', 'rgba(37, 120, 245)', 'rgba(245, 128, 37)', 'rgba(245, 128, 37)'],
       // });
 
-
-      this.barChartData.datasets[result?.index!].data.push(Number(result?.image?.processingTime!.toFixed(2)));
-      this.chart?.update();
+      // if(result.memoryType ==='c') {
+      //   this.barChartData.datasets[result?.index!].data.push(Number(result?.image?.processingTime!.toFixed(2)));
+      // }
+      // this.chart?.update();
 
       // 마지막 데이터 없애기 차트는 다음 시작할때 업데이트함
-/*      if (result.index == this.lastIndex) {
-        // *2 *4 데이터 없데이트 하기
-        for (let i = 0; i <= this.lastIndex; i++) {
-          this.barChartData.datasets[i].data.push(0.8);
-        }
-        for (let i = 0; i <= this.lastIndex; i++) {
-          this.barChartData.datasets[i].data.push(0.7);
-        }
-        this.chart?.update();
-        for (let j = 0; j < 3; j++) {
-          for (let i = 0; i <= this.lastIndex; i++) {
-            this.barChartData.datasets[i].data.pop();
-          }
-        }
-      }*/
+      /*      if (result.index == this.lastIndex) {
+              // *2 *4 데이터 없데이트 하기
+              for (let i = 0; i <= this.lastIndex; i++) {
+                this.barChartData.datasets[i].data.push(0.8);
+              }
+              for (let i = 0; i <= this.lastIndex; i++) {
+                this.barChartData.datasets[i].data.push(0.7);
+              }
+              this.chart?.update();
+              for (let j = 0; j < 3; j++) {
+                for (let i = 0; i <= this.lastIndex; i++) {
+                  this.barChartData.datasets[i].data.pop();
+                }
+              }
+            }*/
 
     });
+  }
+
+  private drawA(result: any) {
+    let opacity = (10 - result.index) / 10
+    this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
+    let width = Number(result.data) * 34;
+    this.ctx!.fillRect(this.lastAx, 15, width, 26);
+    this.ctx!.fillStyle = 'white';
+    this.ctx!.fillText("Q" + (result.index + 1), this.lastAx + (width / 2), 28)
+    this.lastAx = this.lastAx + width;
+  }
+
+  private drawB(result: any) {
+    let opacity = (10 - result.index) / 10
+    this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
+    let width = Number(result.data) * 34;
+    this.ctx!.fillRect(this.lastBx, 54, width, 26);
+    this.ctx!.fillStyle = 'white';
+    this.ctx!.fillText("Q" + (result.index + 1), this.lastBx + (width / 2), 67)
+    this.lastBx = this.lastBx + width;
+  }
+
+  private drawC(result: any) {
+    let opacity = (10 - result.index) / 10
+    this.ctx!.fillStyle = 'rgba(37, 120, 245,' + opacity + ')';
+    let width = Number(result.data) * 34;
+    this.ctx!.fillRect(this.lastCx, 93, width, 26);
+    this.ctx!.fillStyle = 'white';
+    this.ctx!.fillText("Q" + (result.index + 1), this.lastCx + (width / 2), 106)
+    this.lastCx = this.lastCx + width;
+  }
+  private drawD(result: any) {
+    let opacity = (10 - result.index) / 10
+    this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
+    let width = Number(result.data) * 34;
+    this.ctx!.fillRect(this.lastDx, 132, width, 26);
+    this.ctx!.fillStyle = 'white';
+    this.ctx!.fillText("Q" + (result.index + 1), this.lastDx + (width / 2), 145)
+    this.lastDx = this.lastDx + width;
+  }
+  private drawE(result: any) {
+    let opacity = (10 - result.index) / 10
+    this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
+    let width = Number(result.data) * 34;
+    this.ctx!.fillRect(this.lastEx, 171, width, 26);
+    this.ctx!.fillStyle = 'white';
+    this.ctx!.fillText("Q" + (result.index + 1), this.lastEx + (width / 2), 184)
+    this.lastEx = this.lastEx + width;
   }
 
   enterMouseMemoryType = '';
@@ -247,8 +338,8 @@ export class ChartComponent implements OnInit {
 
   private resetChartLabel() {
     // @ts-ignore
-    this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['#0E306D','white', 'white','white', 'white',];
-    this.chart!.chart!.options!.scales!['y']!.ticks!.color = [ 'white','#0E306D', '#0E306D','#0E306D', '#0E306D'];
+    this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['#0E306D', 'white', 'white', 'white', 'white',];
+    this.chart!.chart!.options!.scales!['y']!.ticks!.color = ['white', '#0E306D', '#0E306D', '#0E306D', '#0E306D'];
     this.chart?.update();
   }
 }

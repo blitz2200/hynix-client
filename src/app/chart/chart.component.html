@@ -31,31 +31,37 @@
 
     <div>
       <div class="w-[681px] h-[202px] relative">
-        <canvas
-          baseChart
-          [data]="barChartData"
-          [labels]="['Q1', 'Q2', 'Q3']"
-          [options]="barChartOptions"
-          [plugins]="barChartPlugins"
-          [type]="barChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)">
+        <canvas width="681" height="202" #canvas>
 
         </canvas>
+<!--        <canvas-->
+<!--          baseChart-->
+<!--          [data]="barChartData"-->
+<!--          [labels]="['Q1', 'Q2', 'Q3']"-->
+<!--          [options]="barChartOptions"-->
+<!--          [plugins]="barChartPlugins"-->
+<!--          [type]="barChartType"-->
+<!--          (chartHover)="chartHovered($event)"-->
+<!--          (chartClick)="chartClicked($event)">-->
+
+<!--        </canvas>-->
 <!--        <div class="absolute bg-[rgba(255,255,255,0.7)] z-[999]">-->
-        <div class="absolute bg-[rgba(255,255,255,0.7)] w-[664px] h-[27px] z-[999] top-[19px]"
+<!--        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[19px]"
              *ngIf="enterMouseMemoryType!=='a' && currentMemoryType !== 'a'">
         </div>
-        <div class="absolute bg-[rgba(255,255,255,0.7)] w-[664px] h-[27px] z-[999] top-[56px]">
+        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[56px]">
         </div>
 
-        <div class="absolute bg-[rgba(255,255,255,0.7)] w-[664px] h-[27px] z-[999] top-[92px]">
+        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[92px]">
         </div>
 
-        <div class="absolute bg-[rgba(255,255,255,0.7)] w-[664px] h-[27px] z-[999] top-[129px]">
+        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[129px]">
         </div>
 
-        <div class="absolute bg-[rgba(255,255,255,0.7)] w-[664px] h-[27px] z-[999] top-[166px]">
+        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[166px]">
+        </div>-->
+        <div  class="h-[3px] w-full absolute z-[999] absolute bottom-[-2px] progressBar">
+
         </div>
       </div>
       <div class="text-[14px] font-bold text-[#0E306D] mt-[20px] text-center">

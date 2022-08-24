@@ -24,7 +24,7 @@
   <div *ngFor="let image of sampleImages; let i= index" class="relative">
     <img src='{{image.fileName}}' alt="" (click)="toggleImage(image)"
          [ngClass]="checkActiveImage(image)"
-         class="w-[170px] h-[170px] z-0 object-cover fade-in rounded-[2px]">
+         class="w-[170px] h-[170px] z-0 object-contain fade-in rounded-[2px]">
     <img  *ngIf="checkImage(image)"
 
       src="assets/icons/modal_check_icon.svg" alt="modal check image"
