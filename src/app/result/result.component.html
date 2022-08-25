@@ -1,9 +1,9 @@
 <div class="w-[392px] h-[481px] shadow-xl rounded-[10px] px-[35px] pt-[30px]">
-  <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
+  <div class="text-[26px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
     Top K Results
   </div>
   <div *ngIf="nearestImage === undefined || nearestImage!.results.length < 1; else imageBlock!">
-    <div class="flex justify-center mt-[128px] text-[14px] font-bold text-[#DEDEDE]">
+    <div class="flex justify-center mt-[128px] text-[18px] font-bold text-[#DEDEDE]">
       No results found
     </div>
   </div>
@@ -11,7 +11,7 @@
     <div class=" grid grid-cols-3 gap-[11px]  h-[322px] overflow-y-auto">
       <img *ngFor="let image of nearestImage?.results"
            src="assets/images/image_net_sample/{{nearestImage?.imageType}}/result/{{image.records.croppedImagePath.split('/')[3]}}"
-           alt="" class="w-[100px] h-[100px] object-contain fade-in rounded-[2px]">
+           alt="" class="w-[100px] h-[100px] object-fill fade-in rounded-[2px]">
     </div>
 
   </ng-template>

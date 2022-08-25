@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {BaseChartDirective} from 'ng2-charts';
+import {ChartConfiguration, ChartData, ChartEvent, ChartType} from 'chart.js';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
-import { DataService } from '../service/data.service';
+import {DataService} from '../service/data.service';
 
 @Component({
   selector: 'app-chart',
@@ -25,22 +25,19 @@ export class ChartComponent implements OnInit {
   lastCx = 0;
   lastDx = 0;
   lastEx = 0;
+  totalTime = [0, 0, 0, 0, 0];
+  isProcessing = false;
 
   ngOnInit(): void {
     this.ctx = this.canvas!.nativeElement!.getContext('2d')!;
-    this.ctx.font = "bold 14px 나눔스퀘어";
+    this.ctx.font = "bold 14px NanumSquare";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
 
     this.dataService.getStartProcessing().subscribe(data => {
       if (data.query) {
+        this.isProcessing = true;
         let progressbar: any = document.getElementsByClassName(`progressBar`)[0];
-        // let progressbarInner = document.createElement('div');
-        // progressbarInner.className = 'inner';
-        //
-        // // Now we set the animation parameters
-        // progressbarInner.style.animationDuration = '20s';
-        // progressbar.appendChild(progressbarInner);
         progressbar.style.animationPlayState = 'running';
 
         // this.resetChartLabel();
@@ -50,28 +47,39 @@ export class ChartComponent implements OnInit {
         this.lastCx = 0;
         this.lastDx = 0;
         this.lastEx = 0;
-        this.currentMemoryType = data.memoryType;
-        this.enterMouseMemoryType = data.memoryType;
+        this.totalTime = [0, 0, 0, 0, 0];
+
+        // this.currentMemoryType = data.memoryType;
+        // this.enterMouseMemoryType = data.memoryType;
       }
 
     })
     this.dataService.getResult().subscribe(result => {
 
-      this.currentMemoryType = result.memoryType;
+      // this.currentMemoryType = result.memoryType;
       if (result.memoryType === 'a') {
+        console.log(' Number(result.data)', Number(result.data));
         this.drawA(result);
+        this.totalTime[0] += Number(result.data) * 1000;
+        if (result.index == 9) {
+          this.isProcessing = false;
+        }
       }
       if (result.memoryType === 'b') {
         this.drawB(result);
+        this.totalTime[1] += Number(result.data) * 1000;
       }
       if (result.memoryType === 'c') {
         this.drawC(result);
+        this.totalTime[2] += Number(result.data) * 1000;
       }
       if (result.memoryType === 'd') {
         this.drawD(result);
+        this.totalTime[3] += Number(result.data) * 1000;
       }
       if (result.memoryType === 'e') {
         this.drawE(result);
+        this.totalTime[4] += Number(result.data) * 1000;
       }
 
 
@@ -137,6 +145,7 @@ export class ChartComponent implements OnInit {
     this.ctx!.fillText("Q" + (result.index + 1), this.lastCx + (width / 2), 106)
     this.lastCx = this.lastCx + width;
   }
+
   private drawD(result: any) {
     let opacity = (10 - result.index) / 10
     this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
@@ -146,6 +155,7 @@ export class ChartComponent implements OnInit {
     this.ctx!.fillText("Q" + (result.index + 1), this.lastDx + (width / 2), 145)
     this.lastDx = this.lastDx + width;
   }
+
   private drawE(result: any) {
     let opacity = (10 - result.index) / 10
     this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
@@ -157,7 +167,7 @@ export class ChartComponent implements OnInit {
   }
 
   enterMouseMemoryType = '';
-  currentMemoryType = '';
+  currentMemoryType = 'c';
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
@@ -316,24 +326,17 @@ export class ChartComponent implements OnInit {
   mouseEnter(type: string) {
     this.enterMouseMemoryType = type;
     this.dataService.setStart({'processor': type, 'query': false});
-    for (let i = 0; i < this.barChartData.datasets.length; i++) {
-      if (type === 'a') {
-        // this.barChartData.datasets[i].backgroundColor = ['rgba(245, 128, 37)', 'rgba(245, 128, 37, 1)',
-        //   'rgba(37, 120, 245)', 'rgba(245, 128, 37, 1)', 'rgba(245, 128, 37, 1)',];
-      } else if (type === 'b') {
-
-      }
-
-    }
-    // this.chart?.update();
+    this.dataService.setMouseOver(type);
   }
 
   mouseLeave(type: string) {
     this.enterMouseMemoryType = this.currentMemoryType;
-    this.dataService.setStart({
-      'processor': this.currentMemoryType === '' ? 'c' : this.currentMemoryType,
-      'query': false
-    });
+    this.dataService.setMouseOver(this.currentMemoryType);
+
+    // this.dataService.setStart({
+    //   'processor': this.currentMemoryType === '' ? 'c' : this.currentMemoryType,
+    //   'query': false
+    // });
   }
 
   private resetChartLabel() {
@@ -341,6 +344,10 @@ export class ChartComponent implements OnInit {
     this.chart!.chart!.options!.scales!['y']!.ticks!.backdropColor = ['#0E306D', 'white', 'white', 'white', 'white',];
     this.chart!.chart!.options!.scales!['y']!.ticks!.color = ['white', '#0E306D', '#0E306D', '#0E306D', '#0E306D'];
     this.chart?.update();
+  }
+
+  totalExecutionTime(index: number) {
+    return this.totalTime[index];
   }
 }
 

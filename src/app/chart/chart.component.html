@@ -1,31 +1,40 @@
 <div class="w-[1028px] h-[340px] shadow-xl rounded-[10px] pl-[30px] pt-[30px] mb-[32px]">
-  <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
+  <div class="text-[26px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
     Performance Comparison
   </div>
   <div class="flex w-full">
-    <div class="w-[200px] text-[#0E306D] font-bold text-[12px] pt-[14px]  " id="chart-label">
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
-           [ngClass]="enterMouseMemoryType === 'a' ? 'active-label': 'inactive-label'"
-           (mouseenter)="mouseEnter('a')" (mouseleave)="mouseLeave('a')">DRAM only</div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
-           [ngClass]="enterMouseMemoryType === 'b' ? 'active-label': 'inactive-label'"
-           (mouseenter)="mouseEnter('b')" (mouseleave)="mouseLeave('b')">
-        DRAM & CXL Memory
+    <div class="w-[200px] text-[#0E306D] font-bold text-[16px] pt-[14px]  " id="chart-label">
+      <div class="h-[39px] w-[194px]" (mouseenter)="mouseEnter('a')" (mouseleave)="mouseLeave('a')">
+        <div class="h-[24px] w-[194px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+             [ngClass]="enterMouseMemoryType === 'a' ? 'active-label': 'inactive-label'">
+          DRAM only
+        </div>
       </div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
-           [ngClass]="enterMouseMemoryType === 'c' ? 'active-label': 'inactive-label'"
-           (mouseenter)="mouseEnter('c')" (mouseleave)="mouseLeave('c')">
-        DRAM & CXL CMS
+      <div class="h-[39px] w-[194px]" (mouseenter)="mouseEnter('b')" (mouseleave)="mouseLeave('b')">
+        <div class="h-[24px] w-[194px]] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+             [ngClass]="enterMouseMemoryType === 'b' ? 'active-label': 'inactive-label'">
+          DRAM & CXL Memory
+        </div>
       </div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
-           [ngClass]="enterMouseMemoryType === 'd' ? 'active-label': 'inactive-label'"
-           (mouseenter)="mouseEnter('d')" (mouseleave)="mouseLeave('d')">
-        DRAM & CXL CMS x2
+      <div class="h-[39px] w-[194px]" (mouseenter)="mouseEnter('c')" (mouseleave)="mouseLeave('c')">
+        <div class="h-[24px] w-[194px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+             [ngClass]="enterMouseMemoryType === 'c' ? 'active-label': 'inactive-label'">
+          DRAM & CXL CMS
+        </div>
       </div>
-      <div class="h-[24px] w-[194px] mb-[15px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
-           [ngClass]="enterMouseMemoryType === 'e' ? 'active-label': 'inactive-label'"
-           (mouseenter)="mouseEnter('e')" (mouseleave)="mouseLeave('e')">
-        DRAM & CXL CMS x4
+
+      <div class="h-[39px] w-[194px]" (mouseenter)="mouseEnter('d')" (mouseleave)="mouseLeave('d')">
+        <div class="h-[24px] w-[194px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+             [ngClass]="enterMouseMemoryType === 'd' ? 'active-label': 'inactive-label'">
+          DRAM & CXL CMS x2
+        </div>
+      </div>
+
+      <div class="h-[39px] w-[194px]" (mouseenter)="mouseEnter('e')" (mouseleave)="mouseLeave('e')">
+        <div class="h-[24px] w-[194px] pl-[17px] flex items-center rounded-[12px] cursor-pointer"
+             [ngClass]="enterMouseMemoryType === 'e' ? 'active-label': 'inactive-label'">
+          DRAM & CXL CMS x4
+        </div>
       </div>
     </div>
 
@@ -34,39 +43,55 @@
         <canvas width="681" height="202" #canvas>
 
         </canvas>
-<!--        <canvas-->
-<!--          baseChart-->
-<!--          [data]="barChartData"-->
-<!--          [labels]="['Q1', 'Q2', 'Q3']"-->
-<!--          [options]="barChartOptions"-->
-<!--          [plugins]="barChartPlugins"-->
-<!--          [type]="barChartType"-->
-<!--          (chartHover)="chartHovered($event)"-->
-<!--          (chartClick)="chartClicked($event)">-->
+        <!--        <canvas-->
+        <!--          baseChart-->
+        <!--          [data]="barChartData"-->
+        <!--          [labels]="['Q1', 'Q2', 'Q3']"-->
+        <!--          [options]="barChartOptions"-->
+        <!--          [plugins]="barChartPlugins"-->
+        <!--          [type]="barChartType"-->
+        <!--          (chartHover)="chartHovered($event)"-->
+        <!--          (chartClick)="chartClicked($event)">-->
 
-<!--        </canvas>-->
-<!--        <div class="absolute bg-[rgba(255,255,255,0.7)] z-[999]">-->
-<!--        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[19px]"
-             *ngIf="enterMouseMemoryType!=='a' && currentMemoryType !== 'a'">
-        </div>
-        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[56px]">
-        </div>
+        <!--        </canvas>-->
+        <!--        <div class="absolute bg-[rgba(255,255,255,0.7)] z-[999]">-->
+                <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[15px]"
+                     *ngIf="enterMouseMemoryType!=='a'">
+                </div>
+                <div
+                  *ngIf="enterMouseMemoryType!=='b'"
+                  class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[53px]">
+                </div>
 
-        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[92px]">
-        </div>
+                <div
+                  *ngIf="enterMouseMemoryType!=='c'"
+                  class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[92px]">
+                </div>
 
-        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[129px]">
-        </div>
+                <div
+                  *ngIf="enterMouseMemoryType!=='d'"
+                  class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[131px]">
+                </div>
 
-        <div class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[166px]">
-        </div>-->
-        <div  class="h-[3px] w-full absolute z-[999] absolute bottom-[-2px] progressBar">
+                <div
+                  *ngIf="enterMouseMemoryType!=='e'"
+                  class="absolute bg-[rgba(255,255,255,0.7)] ml-[1px] w-[663px] h-[27px] z-[999] top-[170px]">
+                </div>
+        <div class="h-[3px] w-full absolute z-[999] absolute bottom-[-2px] progressBar">
 
         </div>
       </div>
-      <div class="text-[14px] font-bold text-[#0E306D] mt-[20px] text-center">
+      <div class="text-[16px] font-bold text-[#0E306D] mt-[20px] text-center">
         Execution Time
       </div>
+    </div>
+
+    <div class="w-[70] ml-[17px] text-[#0E306D] font-bold text-[16px] pt-[16px]">
+      <div class="h-[24px] mb-[15px]">{{totalExecutionTime(0) | date:'mm:ss:SS':'UTC'}}</div>
+      <div class="h-[24px] mb-[15px]">{{totalExecutionTime(1) | date:'mm:ss:SS':'UTC'}}</div>
+      <div class="h-[24px] mb-[15px]">{{totalExecutionTime(2) | date:'mm:ss:SS':'UTC'}}</div>
+      <div class="h-[24px] mb-[15px]">{{totalExecutionTime(3) | date:'mm:ss:SS':'UTC'}}</div>
+      <div class="h-[24px] mb-[15px]">{{totalExecutionTime(4) | date:'mm:ss:SS':'UTC'}}</div>
     </div>
   </div>
 

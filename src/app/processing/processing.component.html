@@ -1,12 +1,12 @@
 <div class="w-[604px] h-[481px] shadow-xl rounded-[10px] px-[30px] pt-[30px] mr-[32px]">
-  <div class="text-[24px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
+  <div class="text-[26px] text-[#0E306D] font-bold mb-[30px] leading-[24px]">
     Query Image
   </div>
   <div  class="grid grid-cols-5 gap-x-[11px] gap-y-[24px] auto-cols-auto">
     <div *ngFor="let image of selectedImages; let i= index"  [id]="'image-' + i"
          class="relative w-[100px] h-[124px]" (click)="onClickImage(i)">
 
-        <img src='{{image.fileName}}' alt="" class="absolute z-0 object-contain w-[100px] h-[100px]
+        <img src='{{image.fileName}}' alt="" class="absolute z-0 object-fill w-[100px] h-[100px]
          rounded-[2px] fade-in">
         <div class="absolute layer z-40"></div>
 
@@ -22,7 +22,7 @@
            hidden">
 
       <div class="absolute w-full h-[18px] rounded-[17px] text-[#0E306D]
-       text-[14px] font-bold flex justify-center items-center bottom-0">
+       text-[18px] font-bold flex justify-center items-center bottom-0">
         {{'Q'+(i+1)}}
       </div>
     </div>
@@ -32,15 +32,15 @@
 <!--    <button mat-raised-button (click)="onShuffleImageClick()"-->
 <!--            color="primary" class="!mb-3">Shuffle Image-->
 <!--    </button>-->
-    <div class="rounded-[60px] w-[130px] h-[34px] ml-[65px] mr-[50px]
-    bg-[#E0E9F4] flex items-center justify-center text-[14px] font-bold border-solid border-[1px] border-[#C3D4E9]"
+    <div class="rounded-[60px] w-[150px] h-[40px] ml-[65px] mr-[40px]
+    bg-[#E0E9F4] flex items-center justify-center text-[18px] font-bold border-solid border-[1px] border-[#C3D4E9]"
          [ngClass]="isLoading ? 'select-image-disable': 'select-image-enable'"
          (click)="onSelectImage()">
       Select Image
     </div>
     <div class="flex items-center">
-      <label for="select-count" class="text-[14px] text-[#0E306D] font-bold">K = </label>
-      <select  id="select-count" class="text-[14px] text-[#90A3BF] font-light ml-[2px]" [(ngModel)]="count" [disabled]="isLoading">
+      <label for="select-count" class="text-[18px] text-[#0E306D] font-bold">K = </label>
+      <select  id="select-count" class="text-[18px] text-[#90A3BF] font-light ml-[2px]" [(ngModel)]="count" [disabled]="isLoading">
         <option [ngValue]="1">1</option><option [ngValue]="2">2</option><option [ngValue]="3">3</option><option [ngValue]="4">4</option><option [ngValue]="5">5</option>
         <option [ngValue]="6">6</option><option [ngValue]="7">7</option><option [ngValue]="8">8</option><option [ngValue]="9">9</option><option [ngValue]="10">10</option>
         <option [ngValue]="11">11</option><option [ngValue]="12">12</option><option [ngValue]="13">13</option><option [ngValue]="14">14</option><option [ngValue]="15">15</option>
@@ -48,9 +48,9 @@
         <option [ngValue]="21">21</option><option [ngValue]="22">22</option><option [ngValue]="23">23</option><option [ngValue]="24">24</option><option [ngValue]="25">25</option>
       </select>
     </div>
-    <div class="rounded-[60px] w-[130px] h-[34px] ml-[49px] mr-[50px]
+    <div class="rounded-[60px] w-[150px] h-[40px] ml-[39px]
     bg-gradient-to-b from-[#F58025] to-[#E31837]
-    flex items-center justify-center text-white text-[14px] font-bold" (click)="onStart()" >
+    flex items-center justify-center text-white text-[18px] font-bold" (click)="onStart()" >
 <!--      <mat-spinner diameter="22" class="m-3" color="white" *ngIf="isLoading"></mat-spinner>-->
       <img src="assets/icons/spinner_small_icon.svg" alt="" class="animate-spin w-[20px] h-205px]"  *ngIf="isLoading">
 

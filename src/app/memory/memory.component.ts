@@ -18,8 +18,8 @@ export class MemoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getStartProcessing().subscribe(data => {
-      this.memoryType = data.memoryType;
+    this.dataService.getMouseOver().subscribe(type => {
+      this.memoryType = type;
 
     });
   }

@@ -10,18 +10,15 @@ import { Response} from '../model/response.model';
 })
 export class DataService {
   private startProcessing = new ReplaySubject<string | null>(1);
-  private finishProcessing = new ReplaySubject<string | null>(1);
   private nearestImage = new ReplaySubject<Response | null>(1);
   private result = new ReplaySubject<any>(1);
   private selectImage = new ReplaySubject<number>(1);
+  private mouseOver = new ReplaySubject<string>(1);
 
   getStartProcessing(): Observable<any> {
     return this.startProcessing.asObservable();
   }
 
-  getFinishProcessing(): Observable<string | null> {
-    return this.finishProcessing.asObservable();
-  }
 
   getNearestImage(): Observable<any> {
     return this.nearestImage.asObservable();
@@ -35,12 +32,16 @@ export class DataService {
     return this.selectImage.asObservable();
   }
 
+  getMouseOver(): Observable<string> {
+    return this.mouseOver.asObservable();
+  }
+
   setStart(type: any) {
     this.startProcessing.next(type);
   }
 
-  setFinish(type: string) {
-    this.finishProcessing.next(type);
+  setMouseOver(type: string) {
+    this.mouseOver.next(type);
   }
 
   setNearestImage(response: any) {

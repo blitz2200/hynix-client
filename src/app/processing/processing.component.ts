@@ -124,7 +124,6 @@ export class ProcessingComponent implements OnInit {
 
       const request = this.createRequest(this.selectedImages![i].type!);
       const startTime = new Date().valueOf();
-      await this.sleep(memoryType);
       let knnResult = await this.queryService.getKNNResult(request);
       knnResult = {
         ...knnResult,
