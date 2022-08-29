@@ -7,11 +7,13 @@
       No results found
     </div>
   </div>
-  <ng-template  #imageBlock>
-    <div class=" grid grid-cols-3 gap-[11px]  h-[322px] overflow-y-auto">
-      <img *ngFor="let image of nearestImage?.results"
-           src="assets/images/image_net_sample/{{nearestImage?.imageType}}/result/{{image.records.croppedImagePath.split('/')[3]}}"
-           alt="" class="w-[100px] h-[100px] object-fill fade-in rounded-[2px]">
+  <ng-template #imageBlock>
+    <div class="h-[322px] overflow-y-auto">
+      <div class=" grid grid-cols-3 gap-[11px]">
+        <img *ngFor="let image of nearestImage?.results"
+             src="assets/images/image_net_sample/{{nearestImage?.imageType}}/result/{{image.records.croppedImagePath.split('/')[3]}}"
+             alt="" class="w-[100px] h-[100px] object-contain fade-in rounded-[2px]">
+      </div>
     </div>
 
   </ng-template>

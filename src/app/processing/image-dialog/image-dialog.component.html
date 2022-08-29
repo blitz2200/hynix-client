@@ -1,7 +1,7 @@
 <div class="flex h-[80px] px-[50px] justify-between items-center">
   <div class="font-bold text-[30px] text-[#0E306D]">Select Image</div>
   <div class="font-bold text-[24px] text-[#0E306D]">
-    <span class="text-[#F58025]">{{selectedImage.length}} of 10</span> image(s) selected
+    <span class="text-[#F58025]">{{selectedImage.length}}</span> of 10 image(s) selected
   </div>
 </div>
 <div class="flex h-[4px] ">
@@ -24,7 +24,7 @@
   <div *ngFor="let image of sampleImages; let i= index" class="relative">
     <img src='{{image.fileName}}' alt="" (click)="toggleImage(image)"
          [ngClass]="checkActiveImage(image)"
-         class="w-[170px] h-[170px] z-0 object-fill fade-in rounded-[2px]">
+         class="w-[170px] h-[170px] z-0 object-contain fade-in rounded-[2px]">
     <img  *ngIf="checkImage(image)"
 
       src="assets/icons/modal_check_icon.svg" alt="modal check image"

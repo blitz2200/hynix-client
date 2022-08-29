@@ -26,7 +26,6 @@ export class ChartComponent implements OnInit {
   lastDx = 0;
   lastEx = 0;
   totalTime = [0, 0, 0, 0, 0];
-  isProcessing = false;
 
   ngOnInit(): void {
     this.ctx = this.canvas!.nativeElement!.getContext('2d')!;
@@ -36,8 +35,13 @@ export class ChartComponent implements OnInit {
 
     this.dataService.getStartProcessing().subscribe(data => {
       if (data.query) {
-        this.isProcessing = true;
+
         let progressbar: any = document.getElementsByClassName(`progressBar`)[0];
+
+        progressbar.style.display = 'none';
+        setTimeout(function(){
+          progressbar.style.display = 'block';
+        }, 0)
         progressbar.style.animationPlayState = 'running';
 
         // this.resetChartLabel();
@@ -50,7 +54,7 @@ export class ChartComponent implements OnInit {
         this.totalTime = [0, 0, 0, 0, 0];
 
         // this.currentMemoryType = data.memoryType;
-        // this.enterMouseMemoryType = data.memoryType;
+        this.enterMouseMemoryType = 'c';
       }
 
     })
@@ -62,7 +66,6 @@ export class ChartComponent implements OnInit {
         this.drawA(result);
         this.totalTime[0] += Number(result.data) * 1000;
         if (result.index == 9) {
-          this.isProcessing = false;
         }
       }
       if (result.memoryType === 'b') {

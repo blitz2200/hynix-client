@@ -6,7 +6,7 @@
     <div *ngFor="let image of selectedImages; let i= index"  [id]="'image-' + i"
          class="relative w-[100px] h-[124px]" (click)="onClickImage(i)">
 
-        <img src='{{image.fileName}}' alt="" class="absolute z-0 object-fill w-[100px] h-[100px]
+        <img src='{{image.fileName}}' alt="" class="absolute z-0 object-contain w-[100px] h-[100px]
          rounded-[2px] fade-in">
         <div class="absolute layer z-40"></div>
 
@@ -21,7 +21,7 @@
           w-[38px] h-[38px]
            hidden">
 
-      <div class="absolute w-full h-[18px] rounded-[17px] text-[#0E306D]
+      <div class="absolute w-full h-[20px] rounded-[17px] text-[#0E306D]
        text-[18px] font-bold flex justify-center items-center bottom-0">
         {{'Q'+(i+1)}}
       </div>
@@ -40,7 +40,8 @@
     </div>
     <div class="flex items-center">
       <label for="select-count" class="text-[18px] text-[#0E306D] font-bold">K = </label>
-      <select  id="select-count" class="text-[18px] text-[#90A3BF] font-light ml-[2px]" [(ngModel)]="count" [disabled]="isLoading">
+      <select  id="select-count" class="text-[18px] text-[#90A3BF] font-light ml-[2px]" [(ngModel)]="count"
+               [disabled]="isLoading">
         <option [ngValue]="1">1</option><option [ngValue]="2">2</option><option [ngValue]="3">3</option><option [ngValue]="4">4</option><option [ngValue]="5">5</option>
         <option [ngValue]="6">6</option><option [ngValue]="7">7</option><option [ngValue]="8">8</option><option [ngValue]="9">9</option><option [ngValue]="10">10</option>
         <option [ngValue]="11">11</option><option [ngValue]="12">12</option><option [ngValue]="13">13</option><option [ngValue]="14">14</option><option [ngValue]="15">15</option>
