@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {BaseChartDirective} from 'ng2-charts';
-import {ChartConfiguration, ChartData, ChartEvent, ChartType} from 'chart.js';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BaseChartDirective } from 'ng2-charts';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
-import {DataService} from '../service/data.service';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-chart',
@@ -39,7 +39,7 @@ export class ChartComponent implements OnInit {
         let progressbar: any = document.getElementsByClassName(`progressBar`)[0];
 
         progressbar.style.display = 'none';
-        setTimeout(function(){
+        setTimeout(function () {
           progressbar.style.display = 'block';
         }, 0)
         progressbar.style.animationPlayState = 'running';
@@ -120,7 +120,7 @@ export class ChartComponent implements OnInit {
   }
 
   private drawA(result: any) {
-    let opacity = (10 - result.index) / 10
+    let opacity = (10 - (result.index / 2)) / 10
     this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
     let width = Number(result.data) * 34;
     this.ctx!.fillRect(this.lastAx, 15, width, 26);
@@ -130,7 +130,7 @@ export class ChartComponent implements OnInit {
   }
 
   private drawB(result: any) {
-    let opacity = (10 - result.index) / 10
+    let opacity = (10 - (result.index / 2)) / 10
     this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
     let width = Number(result.data) * 34;
     this.ctx!.fillRect(this.lastBx, 54, width, 26);
@@ -140,17 +140,20 @@ export class ChartComponent implements OnInit {
   }
 
   private drawC(result: any) {
-    let opacity = (10 - result.index) / 10
+    let opacity = (10 - (result.index / 2)) / 10
+
     this.ctx!.fillStyle = 'rgba(37, 120, 245,' + opacity + ')';
     let width = Number(result.data) * 34;
     this.ctx!.fillRect(this.lastCx, 93, width, 26);
+
     this.ctx!.fillStyle = 'white';
+
     this.ctx!.fillText("Q" + (result.index + 1), this.lastCx + (width / 2), 106)
     this.lastCx = this.lastCx + width;
   }
 
   private drawD(result: any) {
-    let opacity = (10 - result.index) / 10
+    let opacity = (10 - (result.index / 2)) / 10
     this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
     let width = Number(result.data) * 34;
     this.ctx!.fillRect(this.lastDx, 132, width, 26);
@@ -160,7 +163,7 @@ export class ChartComponent implements OnInit {
   }
 
   private drawE(result: any) {
-    let opacity = (10 - result.index) / 10
+    let opacity = (10 - (result.index / 2)) / 10
     this.ctx!.fillStyle = 'rgba(245, 128, 37,' + opacity + ')';
     let width = Number(result.data) * 34;
     this.ctx!.fillRect(this.lastEx, 171, width, 26);
